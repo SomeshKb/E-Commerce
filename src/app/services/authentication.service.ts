@@ -5,7 +5,6 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { UserDetails, TokenResponse, TokenPayload } from '../model/user';
 
-  
 @Injectable()
 export class AuthenticationService {
   private token: string;

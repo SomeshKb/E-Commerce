@@ -1,0 +1,12 @@
+<div class="content">
+    <ul id="item">
+      <li *ngFor="let item of items">
+        <a (click)="onSelect(item)" routerLink="/item/{{item._id}}">
+          <img >
+          <h3>{{item.name}} </h3>
+        </a>
+      </li>
+  
+    </ul>
+  </div>
+  
