@@ -20,7 +20,6 @@ export class Item {
     color: string;
     neck: string;
     size: size;
-
 }
 
 export class Order {

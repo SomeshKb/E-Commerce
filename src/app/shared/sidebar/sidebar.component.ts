@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Item } from '../../model/Item';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  items: Data[]=[new Data("Tshirt")];
+  isOpen: Boolean[]= [false,false,false];
 
-  ngOnInit() {
+  constructor() { 
+    
+    this.items.push(new Data("TShirt"))
+    this.items.push(new Data("Tshirt"))
+    this.items.push(new Data("Tshirt"))
   }
+ngOnInit() {
 
+}
+
+open(index){
+  this.isOpen[index]=!this.isOpen[index];
+}
+
+}
+
+class Data{
+  name:string;
+ constructor(val){
+   this.name=val;
+ }
 }

@@ -16,6 +16,13 @@ nav dl dd a {
 	text-decoration: none
 }
 
+#title:hover {
+	cursor: pointer;
+}
+#tile:hover {
+	cursor: pointer;
+}
+
 
 @media only screen and (max-width: 800px) {
 	
@@ -46,11 +53,13 @@ nav dl dd a {
 	nav dl dt:hover {
 		cursor: pointer;
 	}
-	#tile{
-		display: none;
-	}
+	
  #title:hover + #tile{
 	 display: block;
+	}
+
+	#tile:hover{
+		display: block
 	}
 
 	nav dl dt,dd {

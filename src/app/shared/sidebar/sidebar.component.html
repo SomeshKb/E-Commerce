@@ -1,29 +1,23 @@
 <nav>
 
   <dl>
-    <dt id="title"><a>Men</a></dt>
-    <div id="tile">
-      <dd><a href="#">T-Shirt</a></dd>
-      <dd><a href="#">T-Pant</a></dd>
-      <dd><a href="#">Track Suit</a></dd>
+    <dt  (click)="open(1)" id="title"><a>Men</a></dt>
+    <div id="tile"  *ngFor="let item of items">
+      <dd><a *ngIf="isOpen[1]">{{item.name}}</a></dd>
     </div>
   </dl>
 
   <dl>
-    <dt id="title"><a>Women</a></dt>
-    <div id="tile">
-      <dd><a href="#">T-Shirt</a></dd>
-      <dd><a href="#">T-Pant</a></dd>
-      <dd><a href="#">Track Suit</a></dd>
+    <dt  (click)="open(2)" id="title"><a>Women</a></dt>
+    <div id="tile"  *ngFor="let item of items">
+      <dd><a *ngIf="isOpen[2]">{{item.name}}</a></dd>
     </div>
   </dl>
 
   <dl>
-    <dt id="title"><a>Kids</a></dt>
-    <div id="tile">
-      <dd><a href="#">T-Shirt</a></dd>
-      <dd><a href="#">T-Pant</a></dd>
-      <dd><a href="#">Track Suit</a></dd>
+    <dt  (click)="open(3)" id="title"><a>Kids</a></dt>
+    <div id="tile"  *ngFor="let item of items">
+      <dd><a *ngIf="isOpen[3]">{{item.name}}</a></dd>
     </div>
   </dl>
 
