@@ -1,0 +1,12 @@
+<header>
+  <ul>
+
+    <li><a *ngIf="isUserLoggedIn" (click)="logoutUser()">Log-out</a></li>
+    <li><a *ngIf="isUserLoggedIn" routerLink="/create">Create Blog</a></li>
+    <li><a *ngIf="!isUserLoggedIn" routerLink="/login">LogIn</a></li>
+    <li><a *ngIf="isUserLoggedIn" routerLink="/profile">{{user.name}}</a></li>
+    <li><a *ngIf="isUserLoggedIn" routerLink="/blogs">Home</a></li>
+
+
+  </ul>
+</header>

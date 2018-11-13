@@ -1,0 +1,10 @@
+h1 {
+  color: rgb(85, 85, 85);
+  text-shadow: 10px;
+}
+
+#main {
+  margin: 10px;
+  height: 95%;
+  text-align: center
+}

@@ -14,6 +14,12 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { AlertComponent } from './shared/alert/alert.component';
+import { HomeComponent } from './home/home.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +27,13 @@ import { ItemDetailComponent } from './item-detail/item-detail.component';
     LoginComponent,
     SignupComponent,
     ItemsComponent,
-    ItemDetailComponent
+    ItemDetailComponent,
+    HeaderComponent,
+    FooterComponent,
+    NotFoundComponent,
+    AlertComponent,
+    HomeComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

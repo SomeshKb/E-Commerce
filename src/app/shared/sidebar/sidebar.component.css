@@ -1,0 +1,60 @@
+nav {
+	padding: 0%;
+	height: 100%;
+	/* border: solid gray;	 */
+	border-width: 0px 1px 0px 0px;
+}
+nav dl  {
+  position:relative;
+  left:10px; 
+  list-style:none;
+	overflow: hidden;
+	line-height: 30px;
+}
+nav dl dd a {
+	color: blue;
+	text-decoration: none
+}
+
+
+@media only screen and (max-width: 800px) {
+	
+	nav {
+		flex-flow: column;
+			display: grid;
+			grid-gap: 0%;
+			grid-template-columns: 33% 33% 33% ;
+			grid-template-areas:
+			"label1 label1 label1";
+			background-color: #fff;
+			color: #444;
+	  
+	}
+	nav dl  {
+		position:relative;
+		list-style:none;
+	float: left;
+		overflow: hidden;
+	}
+	nav dl dt {
+		grid-area: label1 ;
+		margin: 0;
+		padding: 0;
+	}
+
+	
+	nav dl dt:hover {
+		cursor: pointer;
+	}
+	#tile{
+		display: none;
+	}
+ #title:hover + #tile{
+	 display: block;
+	}
+
+	nav dl dt,dd {
+		text-align: center
+	}
+}
+
