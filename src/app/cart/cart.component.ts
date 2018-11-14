@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../services/authentication.service';
+import { ProductService } from '../services/products.service';
+import { Product } from '../model/Product';
 
 @Component({
   selector: 'app-cart',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  product:Product;
+
+  constructor(private auth:AuthenticationService , private productService:ProductService) { 
+    if (auth.isLoggedIn()) {
+      this.auth.isUserLoggedIn.next(true);
+    }
+  }
 
   ngOnInit() {
+    this.productService.getCartToken()
+    console.log() 
   }
 
 }

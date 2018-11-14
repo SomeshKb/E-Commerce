@@ -86,7 +86,7 @@ export class AuthenticationService {
 
   public logout(): void {
     this.token = '';
-    window.localStorage.removeItem('mean-token');
+    window.localStorage.removeProduct('mean-token');
     this.router.navigateByUrl('/');
   }
 }

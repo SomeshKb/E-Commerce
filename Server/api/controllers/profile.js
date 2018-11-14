@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
-var Item = mongoose.model("items")
+var Product = mongoose.model("products")
 
 module.exports.profileRead = function (req, res) {
 
@@ -41,9 +41,9 @@ module.exports.authorName = function (req, res) {
     });
 };
 
-module.exports.userItems = function (req, res) {
+module.exports.userProducts = function (req, res) {
 
-  Item.find({
+  Product.find({
       authorID: req.params.id
     })
     .then(result => {
@@ -56,7 +56,7 @@ module.exports.userItems = function (req, res) {
         });
       }
       return res.status(500).send({
-        message: "Error while retrieving Item by author with ID " + req.params.id
+        message: "Error while retrieving Product by author with ID " + req.params.id
       });
     });
 };

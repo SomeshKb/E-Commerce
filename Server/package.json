@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./bin/index"
+    "start": "nodemon ./bin/index"
   },
   "dependencies": {
     "body-parser": "~1.10.2",

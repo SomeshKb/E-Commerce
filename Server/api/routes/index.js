@@ -8,7 +8,7 @@ var auth = jwt({
 
 var ctrlProfile = require('../controllers/profile');
 var ctrlAuth = require('../controllers/authentication');
-var ctrlItem = require('../controllers/itemController');
+var ctrlProduct = require('../controllers/productController');
 
 // profile
 router.get('/profile', auth, ctrlProfile.profileRead);
@@ -18,26 +18,26 @@ router.get('/authorName/:id', ctrlProfile.authorName);
 router.post('/register', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);
 
-router.post('/item', ctrlItem.create);
+router.post('/product', ctrlProduct.create);
 
-// router.put('/item/update/likes/:_id', ctrlItem.updateLike);
+// router.put('/product/update/likes/:_id', ctrlProduct.updateLike);
 
-// router.put('/item/update/comments/:id', ctrlItem.addComments);
+// router.put('/product/update/comments/:id', ctrlProduct.addComments);
 
-// router.put('/item/update/:id', ctrlItem.updateBlog);
+// router.put('/product/update/:id', ctrlProduct.updateBlog);
 
- router.post('/item/create', ctrlItem.create);
+ router.post('/product/create', ctrlProduct.create);
 
-// router.get('/user/item/:id', ctrlProfile.userBlogs);
+// router.get('/user/product/:id', ctrlProfile.userBlogs);
 
-router.get('/item/all', ctrlItem.findAll);
-// router.get('/item/user/likes/:id', ctrlItem.findUserLikes);
+router.get('/product/all', ctrlProduct.findAll);
+// router.get('/product/user/likes/:id', ctrlProduct.findUserLikes);
 
- router.get('/item/:_id', ctrlItem.findOne);
+ router.get('/product/:_id', ctrlProduct.findOne);
 
-// router.get('/user/likes/:id', ctrlItem.findUserLikes);
+// router.get('/user/likes/:id', ctrlProduct.findUserLikes);
 
-// router.delete('/item/remove/:id', ctrlItem.deletePost);
+// router.delete('/product/remove/:id', ctrlProduct.deletePost);
 
 
 module.exports = router;

@@ -1,11 +1,11 @@
 <header>
-  
-    
+
     <span><a *ngIf="isUserLoggedIn" routerLink="/home">Home</a></span>
     <input type="text">
     <button>SEARCH</button>
     <span><a *ngIf="isUserLoggedIn" routerLink="/profile">{{user.name}}</a></span>
+    <span><a *ngIf="isUserLoggedIn" routerLink="/cart">Cart</a></span>    
     <span><a *ngIf="isUserLoggedIn" (click)="logoutUser()">Log-out</a></span>
     <span><a *ngIf="!isUserLoggedIn" routerLink="/login">LogIn</a></span>
-    
+
 </header>

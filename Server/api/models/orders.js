@@ -5,7 +5,7 @@ var orderSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  itemID: {
+  productID: {
     type: String,
     required: true
   },

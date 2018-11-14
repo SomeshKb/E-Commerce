@@ -40,5 +40,5 @@ process.on('SIGINT', function () {
 // BRING IN YOUR SCHEMAS & MODELS
 require('./users');
 
-require('./items')
+require('./products')
 require('./orders')

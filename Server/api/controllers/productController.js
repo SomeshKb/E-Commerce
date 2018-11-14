@@ -1,22 +1,29 @@
 var mongoose = require("mongoose")
-let Item = mongoose.model("items")
+let Product = mongoose.model("products")
 let Order = mongoose.model("orders")
 
 exports.create = (req, res) => {
 
-  const item = new Item({
+  const product = new Product({
     name: req.body.name,
-    sellerName: req.body.sellerName,
     sellerID: req.body.sellerID,
+    sellerName: req.body.sellerName,
     quantity: req.body.quantity,
-    cost: req.body.cost });
+    cost: req.body.cost,
+    description: req.body.description,
+    genderSpecific: req.body.genderSpecific,
+    sleeveLength: req.body.sleeveLength,
+    color: req.body.color,
+    neck: req.body.neck,
+    size: req.body.size
+  });
 
-  item.save()
+  product.save()
     .then(data => {
       res.send(data);
     }).catch(err => {
       res.status(500).send({
-        message: err.message || "Some error occurred while creating the item Record."
+        message: err.message || "Some error occurred while creating the product Record."
       });
     });
 
@@ -25,41 +32,41 @@ exports.create = (req, res) => {
 //get data
 
 exports.findAll = (req, res) => {
-  Item.find()
-    .then(item => {
-      res.send(item);
+  Product.find()
+    .then(product => {
+      res.send(product);
     }).catch(err => {
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving item record."
+        message: err.message || "Some error occurred while retrieving product record."
       });
     });
 
 };
 
 
-// Find a single item
+// Find a single product
 exports.findOne = (req, res) => {
-  Item.findOne({
+  Product.findOne({
       '_id': req.params._id
 
     }) // search by id
-    .then(item => {
-      res.send(item);
+    .then(product => {
+      res.send(product);
     }).catch(err => {
       if (err.kind === 'ObjectId') {
         return res.status(404).send({
-          message: "Item not found  " + req.params._id
+          message: "Product not found  " + req.params._id
         });
       }
       return res.status(500).send({
-        message: "Error while retrieving item " + req.params._id
+        message: "Error while retrieving product " + req.params._id
       });
     });
 };
 
 exports.updateLike = (req, res) => {
 
-  Item.updateOne({
+  Product.updateOne({
       '_id': req.params._id
     }, {
       $addToSet: {
@@ -70,11 +77,11 @@ exports.updateLike = (req, res) => {
     .catch(err => {
       if (err.kind === 'ObjectId') {
         return res.status(404).send({
-          message: "Item not found  " + req.params._id
+          message: "Product not found  " + req.params._id
         });
       }
       return res.status(500).send({
-        message: "Error while retrieving item " + req.params._id
+        message: "Error while retrieving product " + req.params._id
       });
     });
 
@@ -85,9 +92,9 @@ exports.updateLike = (req, res) => {
 // find likes per user
 exports.findUserLikes = (req, res) => {
 
-  //  db.item.aggregate([{$match:{authorName:"Nayan"}},{$group:{_id:"$authorName",total:{$sum:{$size:'$like'}} }},{$project:{'_id':0}}])
+  //  db.product.aggregate([{$match:{authorName:"Nayan"}},{$group:{_id:"$authorName",total:{$sum:{$size:'$like'}} }},{$project:{'_id':0}}])
 
-  Item.aggregate({
+  Product.aggregate({
       '$match': {
         'authorID': req.params.id
       }
@@ -120,8 +127,8 @@ exports.findUserLikes = (req, res) => {
     });
 }
 
-exports.deleteItem = (req, res) => {
-  Item.deleteOne({
+exports.deleteProduct = (req, res) => {
+  Product.deleteOne({
       _id: req.params.id
     })
     .then(result => {
@@ -141,8 +148,8 @@ exports.deleteItem = (req, res) => {
 
 
 exports.addComments = (req, res) => {
-  
-  Item.updateOne({
+
+  Product.updateOne({
       '_id': req.params.id
     }, {
       $addToSet: {
@@ -153,20 +160,20 @@ exports.addComments = (req, res) => {
     .catch(err => {
       if (err.kind === 'ObjectId') {
         return res.status(404).send({
-          message: "Item not found  " + req.params._id
+          message: "Product not found  " + req.params._id
         });
       }
       return res.status(500).send({
-        message: "Error while retrieving item " + req.params._id
+        message: "Error while retrieving product " + req.params._id
       });
     });
 };
 
 
 
-exports.updateItem = (req, res) => {
-  
-  Item.updateOne({
+exports.updateProduct = (req, res) => {
+
+  Product.updateOne({
       '_id': req.params.id
     }, {
       $set: {
@@ -179,32 +186,32 @@ exports.updateItem = (req, res) => {
     .catch(err => {
       if (err.kind === 'ObjectId') {
         return res.status(404).send({
-          message: "Item not found  " + req.params._id
+          message: "Product not found  " + req.params._id
         });
       }
       return res.status(500).send({
-        message: "Error while retrieving item " + req.params._id
+        message: "Error while retrieving product " + req.params._id
       });
     });
 };
 
-exports.orderItem = (res, req) =>{
+exports.orderProduct = (res, req) => {
   Order.insertOne({
-    'item_id': req.params.id,
+      'product_id': req.params.id,
       "title": req.body.title,
       "content": req.body.content
-  })
-  .then(res.send())
-  .catch(err => {
-    if (err.kind === 'ObjectId') {
-      return res.status(404).send({
-        message: "Item not found  " + req.params._id
+    })
+    .then(res.send())
+    .catch(err => {
+      if (err.kind === 'ObjectId') {
+        return res.status(404).send({
+          message: "Product not found  " + req.params._id
+        });
+      }
+      return res.status(500).send({
+        message: "Error while retrieving product " + req.params._id
       });
-    }
-    return res.status(500).send({
-      message: "Error while retrieving item " + req.params._id
     });
-  });
 
 
 }
