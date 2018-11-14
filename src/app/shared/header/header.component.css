@@ -1,42 +1,27 @@
 header {
   background-color: rgb(94, 94, 94);
   color: #ddd;
-  position: sticky;
-  top: 0;
-
-  width: 100%;
   display: flex;
-}
-
-ul {
-  flex-flow: column;
-  color: rgb(122, 62, 62);
-  list-style: none;
-  margin: 20px;
-  width: 100%;
-}
-
-ul li {
-  float: right;
-}
-
-ul li a {
-  cursor: pointer;
   padding: 20px;
-  font-size: 20px;
-  text-decoration: none;
-  color: white;
+  flex-direction: row ;
+  justify-content: space-around;
+  align-items:  center ;
+
 }
 
-ul li p {
-
+input{
+  width: 50%;
+  padding: 5px 0px;
   font-size: 20px;
-  margin: 0%;
-  margin: 0px 5px;
-  text-decoration: none;
-  color: white;
+  margin-left: 10px;
 }
 
-li a:hover {
-  background-color: #111;
+span a:hover {
+  color: #111;
+}
+
+span a {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
 }

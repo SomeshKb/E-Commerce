@@ -20,6 +20,7 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { AlertComponent } from './shared/alert/alert.component';
 import { HomeComponent } from './home/home.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     NotFoundComponent,
     AlertComponent,
     HomeComponent,
-    SidebarComponent
+    SidebarComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

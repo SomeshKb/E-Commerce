@@ -21,8 +21,15 @@ ngOnInit() {
 
 }
 
-open(index){
-  this.isOpen[index]=!this.isOpen[index];
+open(value){
+  this.isOpen.map((result,index)=>{
+    if(index==value){
+    this.isOpen[value]=!this.isOpen[value];
+  }
+  else{
+    this.isOpen[index]=false;
+  }})
+
 }
 
 }

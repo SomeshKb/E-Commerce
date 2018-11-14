@@ -1,6 +1,7 @@
 .wrapper {
     display: grid;
     grid-gap: 0%;
+    margin: 0%;
     grid-template-columns: 15% 85% ;
     grid-template-areas:
     "header  header"
@@ -36,6 +37,7 @@ app-header {
     .wrapper {
         display: grid;
         grid-gap: 0%;
+        margin: 0%;
         grid-template-columns: 100% ;
         grid-template-rows: 10% auto 80% 10%;
         grid-template-areas:

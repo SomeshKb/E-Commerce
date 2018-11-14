@@ -1,7 +1,6 @@
 ul {
     list-style-type: none;
     margin: 0;
-    padding: 20px;
     overflow: hidden;
     display: grid;
     grid-template-columns: 24% 24% 24% 24%;

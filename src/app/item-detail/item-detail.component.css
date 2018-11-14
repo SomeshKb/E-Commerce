@@ -1,0 +1,33 @@
+#item {
+  list-style-type: none;
+  margin: 0;
+  padding: 20px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 30% 60%;
+  grid-gap: 10px;
+}
+
+img {
+  align-self: center;
+  width: 90%;
+  height: 400px;
+  margin: 10px auto;
+  display: block;
+  align-self: center;
+}
+
+.details {
+  padding: 10px;
+}
+
+button {
+  padding: 10px;
+  margin: 10px;
+  width: 40%;
+  overflow: hidden;
+  box-shadow: #fff;
+  border-radius: 10px;
+  background-color: #2ecc71;
+  color: #ecf0f1;
+}

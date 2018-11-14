@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemService } from '../services/items.service';
 import { Item } from '../model/Item';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-items',
@@ -10,7 +11,11 @@ import { Item } from '../model/Item';
 export class ItemsComponent implements OnInit {
   items:Item[];
 
-  constructor(private itemService: ItemService) { }
+  constructor(private itemService: ItemService,private auth: AuthenticationService) { 
+    if (auth.isLoggedIn()) {
+      this.auth.isUserLoggedIn.next(true);
+    }
+  }
 
   ngOnInit() {
     this.getAllItems();

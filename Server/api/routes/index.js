@@ -33,7 +33,7 @@ router.post('/item', ctrlItem.create);
 router.get('/item/all', ctrlItem.findAll);
 // router.get('/item/user/likes/:id', ctrlItem.findUserLikes);
 
-// router.get('/item/:_id', ctrlItem.findOne);
+ router.get('/item/:_id', ctrlItem.findOne);
 
 // router.get('/user/likes/:id', ctrlItem.findUserLikes);
 
