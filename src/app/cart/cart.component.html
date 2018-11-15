@@ -1,10 +1,14 @@
 <div class="content">
     <ul id="product">
       <li *ngFor="let product of products">
-        <a routerLink="/product/{{product._id}}">
-          <img >
-          <h3>{{product.name}} </h3>
-        </a>
+        <div id="list" >
+            
+              <img src="http://www.demo.wdmtech.com/images/stories/virtuemart/product/product_lg_type.jpg">
+            
+              <h3>{{product.name}} </h3>
+         
+        </div>
+        
       </li>
     </ul>
   </div>

@@ -1,22 +1,21 @@
 ul {
-    list-style-type: none;
-    margin: 0;
-    overflow: hidden;
-    margin-right: 20px;
-    grid-gap: 10px;
-    background-color: #fff;
+  list-style-type: none;
+  margin: 0;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 24% 24% 24% 24%;
+  grid-gap: 10px;
+  background-color: #fff;
 }
 
 li {
   float: left;
   list-style-type: none;
-  background: rgb(236, 221, 1);
   left: 0;
   padding: 8px;
   align-items: center;
   border-radius: 20px;
   margin: 6px;
-  box-shadow: 6px 6px rgb(0, 0, 0);
 }
 
 #product li h3 {
@@ -57,22 +56,19 @@ li:hover {
 }
 
 .content {
-  min-height: 72.5vh;
-  border-style: solid;
-  border: 2px solid rgb(167, 167, 167);
   margin: 10px;
+  min-height: 72.5vh;
+  border: 2px solid rgb(196, 196, 196);
 }
-
 
 img {
-    align-self: center;
-    width: 80%;
-    height: 180px;
-    margin: 20px auto;
-    display: block;   
-    align-self: center;
+  align-self: center;
+  width: 80%;
+  height: 180px;
+  margin: 20px auto;
+  display: block;
+  align-self: center;
 }
-
 
 button {
   padding: 10px;
