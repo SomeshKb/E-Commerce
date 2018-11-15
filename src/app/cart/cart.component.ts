@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { ProductService } from '../services/products.service';
-import { Product } from '../model/Product';
+import { Product, CartProduct } from '../model/Product';
 
 @Component({
   selector: 'app-cart',
@@ -10,17 +10,34 @@ import { Product } from '../model/Product';
 })
 export class CartComponent implements OnInit {
 
-  product:Product;
+  products:Product[]=[];
 
   constructor(private auth:AuthenticationService , private productService:ProductService) { 
     if (auth.isLoggedIn()) {
       this.auth.isUserLoggedIn.next(true);
-    }
+    }   
   }
+  
 
   ngOnInit() {
-    this.productService.getCartToken()
-    console.log() 
+    this.getCartProduct();
+  }
+
+  getCartProduct(){
+    this.productService.getCartProduct(this.auth.getUserDetails()._id).subscribe(data=>{
+      data.map(x=>{
+        this.productService.getProduct(x.productID).subscribe(
+          data=>{
+            if(this.products!=null){
+              this.products.push(data);
+            }
+            else{
+              this.products[0]=data;
+            }
+          }
+        )
+      })
+    });
   }
 
 }

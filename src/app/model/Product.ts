@@ -30,11 +30,24 @@ export class Product {
 }
 
 export class Order {
-    userName: string;
+    _id: string;
+    products: orderProduct[];
+    buyerID: string;
     date: string;
+    totalCost:number;
+    isCancelled:boolean;
+}
+
+export class orderProduct{
+    productID:string;
+    quantity:number;
+    cost:number;
+}
+
+export class CartProduct {
+    buyerID: string;
+    productID: string;
     quantity: number;
-    userID: string;
-    totalCost: number;
-    isActive: boolean;
+    date: string;
 
 }

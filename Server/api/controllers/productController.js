@@ -84,8 +84,6 @@ exports.updateLike = (req, res) => {
         message: "Error while retrieving product " + req.params._id
       });
     });
-
-
 };
 
 
