@@ -35,7 +35,11 @@ export class Order {
     buyerID: string;
     date: string;
     totalCost:number;
-    isCancelled:boolean;
+    status:string;
+}
+
+export class CartProduct {
+    productID:string;
 }
 
 export class orderProduct{
@@ -44,10 +48,3 @@ export class orderProduct{
     cost:number;
 }
 
-export class CartProduct {
-    buyerID: string;
-    productID: string;
-    quantity: number;
-    date: string;
-
-}

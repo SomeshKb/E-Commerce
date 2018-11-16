@@ -1,15 +1,28 @@
 <div class="content">
-    <ul id="product">
-      <li *ngFor="let product of products">
-        <div id="list" >
-            
-              <img src="http://www.demo.wdmtech.com/images/stories/virtuemart/product/product_lg_type.jpg">
-            
-              <h3>{{product.name}} </h3>
-         
+  <ul id="product">
+    <li *ngFor="let product of products; let i=index">
+      <div id="list">
+
+        <img src="http://www.demo.wdmtech.com/images/stories/virtuemart/product/product_lg_type.jpg">
+        <div id="textArea">
+
+          <h3>{{product.name}} </h3>
+          <p>{{product.cost}}</p>
+          <div id="varyQuantity">
+            <button (click)="varyQuantity(i,'inc',product)">+</button>
+            <p>{{quantity[i]}}</p>
+            <button (click)="varyQuantity(i,'dec',product)">-</button>
+
+          </div>
+
+          <p>{{product.cost*quantity[i]}}</p>
+
         </div>
-        
-      </li>
-    </ul>
-  </div>
-  <button routerLink="">CheckOut</button>
+
+      </div>
+
+    </li>
+  </ul>
+</div>
+<h4>TotalCost: {{getTotalCost()}}</h4>
+<button id="checkout" routerLink="/orders" (click)="createOrder()">CheckOut</button>

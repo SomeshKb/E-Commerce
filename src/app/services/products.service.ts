@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-import { Product } from '../model/product';
+import { Product, Order, CartProduct } from '../model/product';
 import { UserDetails } from '../model/User';
-import { CartProduct, Order } from '../model/Product';
-import { CartComponent } from '../cart/cart.component';
 
 @Injectable({
   providedIn: 'root'
@@ -56,14 +54,15 @@ export class ProductService {
 
   // CART Functions
 
-  addCartProduct(cartProduct: CartProduct, userID: string) {
+  addCartProduct(productID:CartProduct, userID: string) {
     const url = this.productUrl + '/cart/update/' + userID;
-    return this.http.put(url, cartProduct);
+    console.log(productID)
+    return this.http.put(url, productID);
   }
 
-  getCartProduct(userID: string): Observable<CartProduct[]> {
+  getCartProduct(userID: string): Observable<string[]> {
     const url = this.productUrl + '/cart/get/' + userID;
-    return this.http.get<CartProduct[]>(url);
+    return this.http.get<string[]>(url);
   }
 
   deleteCartProduct(cartProduct: CartProduct, userID: string) {
@@ -75,7 +74,7 @@ export class ProductService {
 
   addOrder(order: Order) {
     const url = this.productUrl + '/order';
-    return this.http.put(url, order);
+    return this.http.post(url, order);
   }
 
   getOrderDetail(orderID: string) :Observable<Order> {
@@ -83,9 +82,9 @@ export class ProductService {
     return this.http.get<Order>(url);
   }
 
-  getOrderIDforUser(userID: string):Observable<string> {
+  getOrderIDforUser(userID: string):Observable<string[]> {
     const url = this.productUrl + '/user/order/' + userID;
-    return this.http.get<string>(url);
+    return this.http.get<string[]>(url);
   }
 
 }

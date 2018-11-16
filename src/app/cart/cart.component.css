@@ -1,10 +1,9 @@
+
+
 ul {
   list-style-type: none;
   margin: 0;
   overflow: hidden;
-  display: grid;
-  grid-template-columns: 24% 24% 24% 24%;
-  grid-gap: 10px;
   background-color: #fff;
 }
 
@@ -18,12 +17,11 @@ li {
   margin: 6px;
 }
 
-#product li h3 {
-  background: rgb(109, 109, 109);
+ h3 {
   color: black;
   margin: 0px 0px 8px 0px;
   padding: 8px;
-  text-align: center;
+  text-align: left;
   border-radius: 20px;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
@@ -47,13 +45,7 @@ h1 {
   text-decoration: none;
 }
 
-li:hover {
-  padding: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  margin: 6px;
-  box-shadow: 12px 12px rgb(0, 0, 0);
-}
+
 
 .content {
   margin: 10px;
@@ -70,7 +62,7 @@ img {
   align-self: center;
 }
 
-button {
+#checkout {
   padding: 10px;
   margin: 10px;
   width: 20%;
@@ -80,4 +72,31 @@ button {
   border-radius: 10px;
   background-color: #2ecc71;
   color: #ecf0f1;
+}
+h4 {
+  padding: 10px;
+  margin: 10px;
+text-align: right;
+  color: #7e7e7e;
+}
+
+#list{
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-gap: 10px;
+
+}
+
+#textArea{
+  display: flex;
+  flex-direction: row ;
+  justify-content: space-around;
+  align-items:  center ;
+}
+
+#varyQuantity{
+  display: flex;
+  flex-direction: row ;
+  justify-content: space-around;
+  align-items:  center ;
 }

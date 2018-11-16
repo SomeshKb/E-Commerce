@@ -9,7 +9,7 @@ exports.create = (req, res) => {
     buyerID: req.body.buyerID,
     date: req.body.date,
     totalCost: req.body.totalCost,
-    isCancelled: false
+    status: req.body.status
   });
 
   order.save()
@@ -64,7 +64,7 @@ exports.findUserOrders = (req, res) => {
       _id: 0
     })
     .then(data => {
-      res.send(data)
+      res.send(data.orders)
     })
     .catch(err => {
       res.status(500).send({
@@ -107,11 +107,12 @@ exports.getCartItem = (req, res) => {
 }
 
 exports.setCartItem = (req, res) => {
+  console.log(req)
   User.update({
       _id: req.params.id
     }, {
       $addToSet: {
-        cart: req.body
+        cart: req.body.productID
       }
     })
     .then(res.send())
@@ -123,11 +124,12 @@ exports.setCartItem = (req, res) => {
 }
 
 exports.deleteCartItem = (req, res) => {
+  console.log(req)
   User.updateOne({
       _id: req.params.id
     }, {
       $pull: {
-        'cart': req.body
+        cart: req.body.productID
       }
     })
     .then(data => {

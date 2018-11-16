@@ -33,14 +33,9 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addToCart(){
-    let today = new Date();
-    let cartProduct:CartProduct= {
-      buyerID: this.auth.getUserDetails()._id,
-      productID: this.product._id,
-      quantity: 1,
-      date: (today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear()).toString()
+    let cartProduct:CartProduct={
+        productID:this.product._id        
     }
-    this.productService.addCartProduct(cartProduct,cartProduct.buyerID).subscribe(data=>{
-    });
+    this.productService.addCartProduct( cartProduct,this.auth.getUserDetails()._id).subscribe();
   }
 }
