@@ -6,7 +6,7 @@ export class Product {
     quantity: number;
     cost: number;
     description: string;
-    genderSpecific: string;
+    gender: string;
     sleeveLength: string;
     color: string;
     neck: string;
@@ -20,7 +20,7 @@ export class Product {
         "quantity:"+this.quantity,
         "cost:"+this.cost,
         "description:"+this.description,
-        "genderSpecific:"+this.genderSpecific,
+        "gender:"+this.gender,
         "sleeveLength:"+this.sleeveLength,
         "color:"+this.color,
         "neck:"+this.neck,
@@ -46,5 +46,17 @@ export class orderProduct{
     productID:string;
     quantity:number;
     cost:number;
+}
+
+export class queryProduct{
+    sellerName: string;
+    quantity: number;
+    cost: number;
+    description: string;
+    gender: string;
+    sleeveLength: string;
+    color: string;
+    neck: string;
+    size: string;
 }
 

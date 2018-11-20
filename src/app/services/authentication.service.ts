@@ -4,12 +4,14 @@ import { Observable, BehaviorSubject, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { UserDetails, TokenResponse, TokenPayload } from '../model/user';
+import { Product } from '../model/product';
 
 @Injectable()
 export class AuthenticationService {
   private token: string;
 
   public  isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
 
   constructor(private http: HttpClient, private router: Router) {
 

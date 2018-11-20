@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../model/Product';
+import { Product, queryProduct } from '../../model/Product';
+import { ProductService } from '../../services/products.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { query } from '@angular/core/src/render3/query';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,35 +11,59 @@ import { Product } from '../../model/Product';
 })
 export class SidebarComponent implements OnInit {
 
-  products: Data[]=[new Data("Tshirt")];
-  isOpen: Boolean[]= [false,false,false];
 
-  constructor() { 
-    
-    this.products.push(new Data("TShirt"))
-    this.products.push(new Data("Tshirt"))
-    this.products.push(new Data("Tshirt"))
+  products: string[] = [];
+  facetVariable: string[] = ['gender', 'sleeveLength', 'color', 'neck', 'size']
+  isOpen: Boolean[] = [false, false, false, false, false];
+  contentEditable;
+
+  facetType: string[][] = [];
+
+  checkedFacet: boolean[][] = [];
+  queryString:string[]=[];
+
+
+  constructor(private productService: ProductService) {
   }
-ngOnInit() {
+  ngOnInit() {
+    this.getDistinctValuesForFacets(this.facetVariable, this.facetType);
 
-}
 
-open(value){
-  this.isOpen.map((result,index)=>{
-    if(index==value){
-    this.isOpen[value]=!this.isOpen[value];
   }
-  else{
-    this.isOpen[index]=false;
-  }})
 
-}
+  open(value) {
+    this.isOpen.map(() => {
+      this.isOpen[value] = !this.isOpen[value];
+    })
+  }
 
-}
+  getDistinctValuesForFacets(types: string[], values: string[][]): void {
+    types.map((x) => this.productService.getProductTypes(x).subscribe(result => {
+      values.push(result);
+    })
+    )
+  }
 
-class Data{
-  name:string;
- constructor(val){
-   this.name=val;
- }
+  getFilteredResult() {
+
+    let query: string = '{' + this.queryString + '}';
+    console.log(query)
+
+    // let query='{"gender":"Male"}'
+    this.productService.getFilterProduct(query).subscribe((result) => {
+      this.productService.currentProduct.next(result);
+    })
+  }
+
+
+  toggleEditable(event, selectedFacet: string, selectedItem: string) {
+    if (event.target.checked) {
+
+       this.queryString.push(selectedFacet+':'+selectedItem)
+
+      console.log(this.queryString.toString);
+    }
+
+  }
+
 }

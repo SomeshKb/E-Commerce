@@ -35,6 +35,8 @@ router.get("/product/user/order/:id",ctrlOrder.findUserOrders);
 router.post('/product/create', ctrlProduct.create);
 router.get('/product/all', ctrlProduct.findAll);
 router.get('/product/:_id', ctrlProduct.findOne);
+router.get('/product/filter/all', ctrlProduct.findByQuery);
+router.get('/product/distinct/:id', ctrlProduct.findByDistinct);
 
 // router.put('/product/update/likes/:_id', ctrlProduct.updateLike);
 // router.put('/product/update/comments/:id', ctrlProduct.addComments);

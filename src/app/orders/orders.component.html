@@ -1,3 +1,7 @@
-<ul *ngFor="let item of product">
-  <li>{{item.name}}</li>
+<ul *ngFor="let order of orders; let i=index">
+    <ul *ngFor="let item of order.products">
+      <li *ngIf="item.productID">
+          {{item.productID}}
+      </li>
+    </ul>
 </ul>

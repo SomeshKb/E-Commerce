@@ -11,7 +11,7 @@ exports.create = (req, res) => {
     quantity: req.body.quantity,
     cost: req.body.cost,
     description: req.body.description,
-    genderSpecific: req.body.genderSpecific,
+    gender: req.body.gender,
     sleeveLength: req.body.sleeveLength,
     color: req.body.color,
     neck: req.body.neck,
@@ -63,6 +63,42 @@ exports.findOne = (req, res) => {
       });
     });
 };
+
+
+// Find product using filter i.e query
+exports.findByQuery = (req, res) => {
+  Product.find(req.query)
+    .then(product => {
+      res.send(product);
+    }).catch(err => {
+      if (err.kind === 'ObjectId') {
+        return res.status(404).send({
+          message: "Product not found  " + req.params._id
+        });
+      }
+      return res.status(500).send({
+        message: "Error while retrieving product " + req.params._id
+      });
+    });
+};
+
+exports.findByDistinct = (req, res) => {
+  Product.distinct(req.params.id)
+    .then(values => {
+      res.send(values);
+    }).catch(err => {
+      if (err.kind === 'ObjectId') {
+        return res.status(404).send({
+          message: "Product not found  " + req.params._id
+        });
+      }
+      return res.status(500).send({
+        message: "Error while retrieving product " + req.params._id
+      });
+    });
+};
+
+
 
 exports.updateLike = (req, res) => {
 

@@ -13,25 +13,32 @@ export class OrdersComponent implements OnInit {
   orders: Order[] = [];
   product: Product[] = [];
 
-  constructor(private productService: ProductService, private auth: AuthenticationService) { }
+  constructor(private productService: ProductService, private auth: AuthenticationService) {
+
+  }
   ngOnInit() {
     this.productService.getOrderIDforUser(this.auth.getUserDetails()._id).subscribe(data => {
       data.map(x => {
-
         this.productService.getOrderDetail(x).subscribe(order => {
-          console.log(order)
-
-          order.products.map(x =>{
-
-            this.productService.getProduct(x.productID).subscribe(x =>{
- 
-              this.product.push(x)
-              })
+          this.orders.push(order);
+          order.products.map(x => {
+            this.productService.getProduct(x.productID).subscribe(data => {
+              this.product.push(data);
             })
+          })
         })
       })
     })
-
   }
 
+  //   getProductDetails(){
+  //     this.orders.map(x=>{
+  //         x.products.map((y,index)=>{
+  //           this.productService.getProduct(y.productID).subscribe(items =>{
+  //                  this.product[index].push(items);
+  //                  console.log(this.product[index]);
+  //           })
+  //         })
+  //       })
+  // }
 }

@@ -8,6 +8,8 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class CheckoutComponent implements OnInit {
 
+  
+
   constructor(private auth:AuthenticationService) { 
     if (auth.isLoggedIn()) {
       this.auth.isUserLoggedIn.next(true);
