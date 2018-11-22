@@ -26,6 +26,16 @@ export class Product {
         "neck:"+this.neck,
         "size:"+this.size +"}"
 }
+
+
+find(product:Product[],id:string){
+    product.map(x=>{
+        if(x._id==id){
+            return x;
+        }
+    })
+    return -1;
+}
     
 }
 

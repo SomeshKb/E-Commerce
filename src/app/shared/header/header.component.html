@@ -1,11 +1,14 @@
 <header>
 
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgaQvB8gvXT5ilkWXONVDb8GWrm_ACcJliub33mj9uVeC6Na9A">
     <span><a *ngIf="isUserLoggedIn" routerLink="/home">Home</a></span>
-    <input type="text">
-    <button>SEARCH</button>
+    <!-- <input type="text">
+    <button>SEARCH</button> -->
+    <app-search></app-search>
     <span><a *ngIf="isUserLoggedIn" routerLink="/">{{user.name}}</a></span>
-    <span><a *ngIf="isUserLoggedIn" routerLink="/cart">Cart</a></span>    
-    <span><a *ngIf="isUserLoggedIn" (click)="logoutUser()">Log-out</a></span>
+    <span id="cart"><a *ngIf="isUserLoggedIn" routerLink="/cart">Cart</a></span>    
+    <span id="logout"><a  *ngIf="isUserLoggedIn" (click)="logoutUser()">Log-out</a></span>
     <span><a *ngIf="!isUserLoggedIn" routerLink="/login">LogIn</a></span>
 
+    <app-nav></app-nav>
 </header>

@@ -1,7 +1,20 @@
+<!-- <div *ngIf="orders">
+
+</div>
 <ul *ngFor="let order of orders; let i=index">
-    <ul *ngFor="let item of order.products">
-      <li *ngIf="item.productID">
-          {{item.productID}}
+    <ul *ngFor="let item of order.products; let j=index">
+      <li *ngIf="product[i][j]">
+          {{product[i][j]}}
       </li>
     </ul>
-</ul>
+</ul> -->
+
+<div *ngIf="products">
+
+  <ul *ngFor="let order of orders; let i=index">
+    <ul *ngFor="let item of order.products; let j=index">
+      <li *ngIf="products[i][j]"> </li>
+      {{products[i][j].name}}
+    </ul>
+  </ul>
+</div>

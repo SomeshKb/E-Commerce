@@ -1,0 +1,7 @@
+<form [formGroup]="coolForm">
+  <input list="searchList" type="text" formControlName="search" placeholder="Search ...." required minlength="1">
+  <datalist id="searchList" formControlName="searchList" *ngFor="let item of result">
+<option value="sa">
+  </datalist>
+
+</form>

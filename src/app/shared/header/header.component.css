@@ -1,35 +1,50 @@
 header {
-  background-color: rgb(94, 94, 94);
-  color: #ddd;
+  background-color: rgb(247, 182, 62);
   display: flex;
-  padding: 20px ;
-  flex-direction: row ;
+  padding-top: 10px;
+  padding-bottom: 0%;
+  margin: 0%;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
-  align-items:  center ;
+  align-items: center;
 }
 
-
-button{
-  padding: 10px 30px;
-  background-color: aquamarine;
-  border: aquamarine;
-  border-radius: 2px;
-}
-
-input{
-  width: 50%;
+app-search {
+  width: 30%;
   padding: 5px 0px;
   font-size: 20px;
   margin-left: 10px;
 }
 
-span a:hover {
-  color: #111;
-}
 
 span a {
-  color: white;
+  color: rgb(37, 33, 33);
   width: 100%;
   text-decoration: none;
   font-size: 20px;
+}
+
+span a:hover {
+  color: rgb(143, 143, 143);
+  cursor: pointer;
+}
+
+
+app-nav {
+  flex-basis: 100%;
+  padding: 0%;
+  margin: 0%;
+}
+
+img {
+  display: block;
+  border-radius: 32px;
+  width: 60px;
+  height: 60px;
+  padding: 5px;
+}
+
+#logout {
+  float: right;
 }

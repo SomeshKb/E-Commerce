@@ -11,18 +11,17 @@ ul {
 li {
   float: left;
   list-style-type: none;
-  background: rgb(236, 221, 1);
+  background-color: rgb(252, 194, 87);
   left: 0;
   padding: 8px;
   align-items: center;
   border-radius: 20px;
   margin: 6px;
-  box-shadow: 6px 6px rgb(0, 0, 0);
 }
 
 #product li h3 {
-  background: rgb(109, 109, 109);
-  color: black;
+  background-color: rgb(255, 189, 67);
+  color: white;
   margin: 0px 0px 8px 0px;
   padding: 8px;
   text-align: center;
@@ -54,7 +53,7 @@ li:hover {
   cursor: pointer;
   text-decoration: none;
   margin: 6px;
-  box-shadow: 12px 12px rgb(0, 0, 0);
+  box-shadow: 6px 6px rgb(255, 153, 37);
 }
 
 .content {

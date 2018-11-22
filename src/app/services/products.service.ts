@@ -51,13 +51,15 @@ export class ProductService {
     return this.http.put(url, product);
   }
 
+  getFilterProduct(type: string) {
+    const url: string = this.productUrl + '/filter/'+type;
+    return this.http.get<Product[]>(url);
+  }
 
+  getNavProduct(type:string){
+    const url:string = this.productUrl+'/nav/search/'+type;
+    return this.http.get<Product[]>(url);
 
-  getFilterProduct(query: string) {
-    const url: string = this.productUrl + '/filter/all/';
-    return this.http.get<Product[]>(url, {
-      params: JSON.parse(query)
-    });
   }
 
   getProductTypes(type: string) {
@@ -65,9 +67,20 @@ export class ProductService {
     return this.http.get<string[]>(url);
   }
 
+  getSearchResult(searchString:string): Observable<Product[]> {
+  if(searchString!=''){
+    const url: string = this.productUrl + '/search/'+searchString;
+    return this.http.get<Product[]>(url);
+  }
+  else{
+   return this.getProducts();
+  }
+  }
+
   // CART Functions
 
   addCartProduct(productID: CartProduct, userID: string) {
+    
     const url = this.productUrl + '/cart/update/' + userID;
     console.log(productID)
     return this.http.put(url, productID);

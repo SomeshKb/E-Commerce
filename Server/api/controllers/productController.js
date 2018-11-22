@@ -67,7 +67,7 @@ exports.findOne = (req, res) => {
 
 // Find product using filter i.e query
 exports.findByQuery = (req, res) => {
-  Product.find(req.query)
+  Product.find({$or:[res.query]})
     .then(product => {
       res.send(product);
     }).catch(err => {
@@ -81,6 +81,41 @@ exports.findByQuery = (req, res) => {
       });
     });
 };
+
+// Find product using filter i.e query
+exports.findSearch = (req, res) => {
+    Product.find({'name': {'$regex': req.params.id, '$options': 'i'}})
+      .then(product => {
+        res.send(product);
+      }).catch(err => {
+        if (err.kind === 'ObjectId') {
+          return res.status(404).send({
+            message: "Product not found  " + req.params._id
+          });
+        }
+        return res.status(500).send({
+          message: "Error while retrieving product " + req.params._id
+        });
+      });
+  };
+
+  exports.findByGender = (req, res) => {
+    Product.find({'gender': req.params.id})
+      .then(product => {
+        res.send(product);
+      }).catch(err => {
+        if (err.kind === 'ObjectId') {
+          return res.status(404).send({
+            message: "Product not found  " + req.params._id
+          });
+        }
+        return res.status(500).send({
+          message: "Error while retrieving product " + req.params._id
+        });
+      });
+  };
+
+
 
 exports.findByDistinct = (req, res) => {
   Product.distinct(req.params.id)
@@ -97,8 +132,6 @@ exports.findByDistinct = (req, res) => {
       });
     });
 };
-
-
 
 exports.updateLike = (req, res) => {
 

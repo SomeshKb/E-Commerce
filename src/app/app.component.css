@@ -30,6 +30,7 @@ app-footer {
 app-header {
     margin: 0%;
     grid-area: header;
+    margin-bottom: 10px;
 }
 
 

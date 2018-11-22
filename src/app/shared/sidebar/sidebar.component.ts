@@ -16,19 +16,16 @@ export class SidebarComponent implements OnInit {
   facetVariable: string[] = ['gender', 'sleeveLength', 'color', 'neck', 'size']
   isOpen: Boolean[] = [false, false, false, false, false];
   contentEditable;
-
   facetType: string[][] = [];
 
   checkedFacet: boolean[][] = [];
-  queryString:string[]=[];
+  queryString: string[] = [];
 
 
   constructor(private productService: ProductService) {
   }
   ngOnInit() {
     this.getDistinctValuesForFacets(this.facetVariable, this.facetType);
-
-
   }
 
   open(value) {
@@ -44,26 +41,30 @@ export class SidebarComponent implements OnInit {
     )
   }
 
-  getFilteredResult() {
+  getFilteredResult(gender:string) {
 
-    let query: string = '{' + this.queryString + '}';
-    console.log(query)
-
-    // let query='{"gender":"Male"}'
-    this.productService.getFilterProduct(query).subscribe((result) => {
+    this.productService.getFilterProduct(gender).subscribe((result) => {
       this.productService.currentProduct.next(result);
     })
   }
 
-
   toggleEditable(event, selectedFacet: string, selectedItem: string) {
-    if (event.target.checked) {
 
-       this.queryString.push(selectedFacet+':'+selectedItem)
-
-      console.log(this.queryString.toString);
+    if(event.target.checked){
+      console.log(7)
     }
+    // if (event.target.checked) {
 
+    //   if(item)
+
+    //   // this.queryString.push(selectedFacet +'='  + selectedItem)
+    // } else if (event.target.unchecked) {
+
+    //   // this.queryString.push(selectedFacet + '=' + selectedItem)
+
+    // }
   }
 
 }
+
+

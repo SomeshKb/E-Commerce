@@ -7,7 +7,7 @@ import { SignupComponent } from './signup/signup.component';
 import { ProductsComponent } from './products/products.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ProductService } from './services/products.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { AuthGuardService } from './services/auth-guard.service';
@@ -23,6 +23,8 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { OrdersComponent } from './orders/orders.component';
+import { SearchComponent } from './shared/search/search.component';
+import { NavComponent } from './shared/nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -39,13 +41,16 @@ import { OrdersComponent } from './orders/orders.component';
     SidebarComponent,
     CartComponent,
     CheckoutComponent,
-    OrdersComponent
+    OrdersComponent,
+    SearchComponent,
+    NavComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
     FormsModule,
+  ReactiveFormsModule,
     RouterModule,
     HttpClientModule
   ],

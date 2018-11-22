@@ -37,6 +37,8 @@ router.get('/product/all', ctrlProduct.findAll);
 router.get('/product/:_id', ctrlProduct.findOne);
 router.get('/product/filter/all', ctrlProduct.findByQuery);
 router.get('/product/distinct/:id', ctrlProduct.findByDistinct);
+router.get('/product/search/:id', ctrlProduct.findSearch);
+router.get('/product/nav/search/:id', ctrlProduct.findByGender);
 
 // router.put('/product/update/likes/:_id', ctrlProduct.updateLike);
 // router.put('/product/update/comments/:id', ctrlProduct.addComments);

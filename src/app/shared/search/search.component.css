@@ -1,0 +1,10 @@
+input{
+  width: 100%;
+  padding: 10px 5px;
+  font-size: 15px;
+  border: 0ch ;
+  user-select: none;
+  color: #fff;
+  background-color: rgb(238, 170, 106);
+  border-radius: 10px;
+}

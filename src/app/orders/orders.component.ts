@@ -11,7 +11,7 @@ import { Order, Product } from '../model/Product';
 export class OrdersComponent implements OnInit {
 
   orders: Order[] = [];
-  product: Product[] = [];
+  products: Product[][] = [];
 
   constructor(private productService: ProductService, private auth: AuthenticationService) {
 
@@ -21,14 +21,20 @@ export class OrdersComponent implements OnInit {
       data.map(x => {
         this.productService.getOrderDetail(x).subscribe(order => {
           this.orders.push(order);
-          order.products.map(x => {
+          order.products.map((x, index) => {
             this.productService.getProduct(x.productID).subscribe(data => {
-              this.product.push(data);
+              if (this.products[index] == undefined) {
+                this.products[index] = [];
+              }
+              this.products[index].push(data);
+              console.log(this.products)
+            console.log(this.products[0])
             })
           })
         })
       })
     })
+
   }
 
   //   getProductDetails(){
