@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 // import { Blog } from '../model/blog';
 // import { UserDetails } from '../model/User';
+import { Order } from '../model/Product';
 
 @Injectable({
   providedIn: 'root'
@@ -18,22 +19,15 @@ export class UserService {
   //   return this.http.get<string>(url);
   // }
 
-  // // GET Author's Name
-  // getAuthorName(userID: string): Observable<string> {
-  //   const url = "api/authorName/" + userID;
-  //   return this.http.get<string>(url);
-  // }
+  // GET User's Orders
+  getUserOrders(userID: string): Observable<Order[]> {
+    const url = "api/user/orders/" + userID;
+    return this.http.get<Order[]>(url);
+  }
 
-  // // GET User's Blog
-  // getUserBlogs(userID: string): Observable<Blog[]> {
-  //   const url = "api/user/blog/" + userID;
-  //   return this.http.get<Blog[]>(url);
-  // }
-
-  // // GET Author's Details
-  // getAuthorDetails(userID: string): Observable<UserDetails> {
-  //   const url = "api/authorName/" + userID;
-  //   return this.http.get<UserDetails>(url);
-  // }
-
+  // GET Author's Details
+  getAuthorDetails(userID: string): Observable<String> {
+    const url = "api/authorName/" + userID;
+    return this.http.get<String>(url);
+  }
 }

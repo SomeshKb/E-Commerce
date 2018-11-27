@@ -60,7 +60,6 @@ export class CartComponent implements OnInit {
     let today = new Date();
     this.order.date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear().toString();
     this.order.totalCost = this.getTotalCost();
-    console.log(this.order);
 
     this.productService.addOrder(this.order).subscribe();
 

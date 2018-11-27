@@ -16,6 +16,10 @@ nav dl dd a {
 	text-decoration: none
 }
 
+a:hover{
+cursor: pointer;
+}
+
 #title:hover {
 	cursor: pointer;
 }

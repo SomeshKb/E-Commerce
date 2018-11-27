@@ -17,12 +17,12 @@ export class NavComponent implements OnInit {
 
   navClickded(value:string){
 
-    this.productService.getNavProduct(value).subscribe(res=>{
+    this.productService.getProductByGender(value).subscribe(res=>{
       this.productService.currentProduct.next(res);
-      let params={
-        gender:value
-      }
-        this.router.navigate(['/products',params])
+ 
+        // this.router.navigate(['/products',params])
+        this.router.navigate(['/products'], { queryParams: { gender: value } });
+
       })
   }
 

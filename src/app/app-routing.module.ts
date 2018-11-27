@@ -10,6 +10,7 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { OrdersComponent } from './orders/orders.component';
 import { SearchComponent } from './shared/search/search.component';
+import { UserProfileComponent } from './shared/user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/products', pathMatch: 'full' },
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'search', component: SearchComponent},
   { path: 'cart', component: CartComponent, canActivate: [AuthGuardService]},
   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuardService] },
-  { path: 'orders', component: OrdersComponent, canActivate: [AuthGuardService] }
+  { path: 'orders', component: OrdersComponent, canActivate: [AuthGuardService] },
+  { path: 'account', component: UserProfileComponent, canActivate: [AuthGuardService] },
   
   
 ];

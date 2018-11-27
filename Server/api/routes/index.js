@@ -30,6 +30,7 @@ router.post("/product/order",ctrlOrder.create);
 router.post("/product/order",ctrlOrder.findAllOrders);
 router.get("/product/order/:id",ctrlOrder.findOrder);
 router.get("/product/user/order/:id",ctrlOrder.findUserOrders);
+router.get("/user/order/:id",ctrlOrder.findUserOrders);
 
 //product
 router.post('/product/create', ctrlProduct.create);
@@ -47,5 +48,10 @@ router.get('/product/nav/search/:id', ctrlProduct.findByGender);
 // router.get('/product/user/likes/:id', ctrlProduct.findUserLikes);
 // router.get('/user/likes/:id', ctrlProduct.findUserLikes);
 // router.delete('/product/remove/:id', ctrlProduct.deletePost);
+
+//facets
+router.get('/product/facets/all', ctrlProduct.facetsSearch);
+
+
 
 module.exports = router;

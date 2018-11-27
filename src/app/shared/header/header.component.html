@@ -5,9 +5,9 @@
     <!-- <input type="text">
     <button>SEARCH</button> -->
     <app-search></app-search>
-    <span><a *ngIf="isUserLoggedIn" routerLink="/">{{user.name}}</a></span>
+    <span><a *ngIf="isUserLoggedIn" routerLink="/account">{{user.name}}</a></span>
     <span id="cart"><a *ngIf="isUserLoggedIn" routerLink="/cart">Cart</a></span>    
-    <span id="order"><a *ngIf="isUserLoggedIn" routerLink="/orders">Past Order</a></span>    
+    <span id="order"><a *ngIf="isUserLoggedIn" routerLink="/orders">My Orders</a></span>    
     <span id="logout"><a  *ngIf="isUserLoggedIn" (click)="logoutUser()">Log-out</a></span>
     <span><a *ngIf="!isUserLoggedIn" routerLink="/login">LogIn</a></span>
 

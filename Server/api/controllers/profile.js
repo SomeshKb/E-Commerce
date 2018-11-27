@@ -16,3 +16,22 @@ module.exports.profileRead = function (req, res) {
       });
   }
 };
+
+
+
+// exports.findUserProduct = (req, res) => {
+
+//   User.find({
+//       '_id': req.params.id},{orders:1,_id:0})
+//     .then(res.send())
+//     .catch(err => {
+//       if (err.kind === 'ObjectId') {
+//         return res.status(404).send({
+//           message: "User not found  " + req.params.id
+//         });
+//       }
+//       return res.status(500).send({
+//         message: "Error while retrieving Details "
+//       });
+//     });
+// };

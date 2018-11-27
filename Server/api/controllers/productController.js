@@ -1,6 +1,7 @@
 var mongoose = require("mongoose")
 let Product = mongoose.model("products")
 let Order = mongoose.model("orders")
+let Facets = mongoose.model("facets")
 
 exports.create = (req, res) => {
 
@@ -67,7 +68,10 @@ exports.findOne = (req, res) => {
 
 // Find product using filter i.e query
 exports.findByQuery = (req, res) => {
-  Product.find({$or:[res.query]})
+  console.log(req)
+  Product.find({
+      $and: [req.query]
+    })
     .then(product => {
       res.send(product);
     }).catch(err => {
@@ -84,36 +88,43 @@ exports.findByQuery = (req, res) => {
 
 // Find product using filter i.e query
 exports.findSearch = (req, res) => {
-    Product.find({'name': {'$regex': req.params.id, '$options': 'i'}})
-      .then(product => {
-        res.send(product);
-      }).catch(err => {
-        if (err.kind === 'ObjectId') {
-          return res.status(404).send({
-            message: "Product not found  " + req.params._id
-          });
-        }
-        return res.status(500).send({
-          message: "Error while retrieving product " + req.params._id
+  Product.find({
+      'name': {
+        '$regex': req.params.id,
+        '$options': 'i'
+      }
+    })
+    .then(product => {
+      res.send(product);
+    }).catch(err => {
+      if (err.kind === 'ObjectId') {
+        return res.status(404).send({
+          message: "Product not found  " + req.params._id
         });
+      }
+      return res.status(500).send({
+        message: "Error while retrieving product " + req.params._id
       });
-  };
+    });
+};
 
-  exports.findByGender = (req, res) => {
-    Product.find({'gender': req.params.id})
-      .then(product => {
-        res.send(product);
-      }).catch(err => {
-        if (err.kind === 'ObjectId') {
-          return res.status(404).send({
-            message: "Product not found  " + req.params._id
-          });
-        }
-        return res.status(500).send({
-          message: "Error while retrieving product " + req.params._id
+exports.findByGender = (req, res) => {
+  Product.find({
+      'gender': req.params.id
+    })
+    .then(product => {
+      res.send(product);
+    }).catch(err => {
+      if (err.kind === 'ObjectId') {
+        return res.status(404).send({
+          message: "Product not found  " + req.params._id
         });
+      }
+      return res.status(500).send({
+        message: "Error while retrieving product " + req.params._id
       });
-  };
+    });
+};
 
 
 
@@ -235,8 +246,23 @@ exports.addComments = (req, res) => {
       });
     });
 };
+//facets and filter
+exports.facetsSearch = (req, res) => {
 
-
+  Facets.find({})
+    .then(result => {
+      res.send(result);
+    }).catch(err => {
+      if (err.kind === 'ObjectId') {
+        return res.status(404).send({
+          message: "Data not found"
+        });
+      }
+      return res.status(500).send({
+        message: "Error while retrieving data " 
+      });
+    });
+};
 
 exports.updateProduct = (req, res) => {
 
@@ -262,7 +288,7 @@ exports.updateProduct = (req, res) => {
     });
 };
 
-exports.orderProduct = (res, req) => {
+exports.orderProduct = (req, res) => {
   Order.insertOne({
       'product_id': req.params.id,
       "title": req.body.title,
@@ -279,6 +305,4 @@ exports.orderProduct = (res, req) => {
         message: "Error while retrieving product " + req.params._id
       });
     });
-
-
 }

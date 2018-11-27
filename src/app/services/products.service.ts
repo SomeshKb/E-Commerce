@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Product, Order, CartProduct } from '../model/product';
 import { UserDetails } from '../model/User';
+import { facet } from '../model/Facet';
 
 @Injectable({
   providedIn: 'root'
@@ -52,37 +53,38 @@ export class ProductService {
   }
 
   getFilterProduct(type: string) {
-    const url: string = this.productUrl + '/filter/'+type;
+    const url: string = this.productUrl + '/filter/' + type;
     return this.http.get<Product[]>(url);
   }
 
-  getNavProduct(type:string){
-    const url:string = this.productUrl+'/nav/search/'+type;
+  getProductByGender(type: string) {
+    const url: string = this.productUrl + '/nav/search/' + type;
     return this.http.get<Product[]>(url);
 
   }
+
+
 
   getProductTypes(type: string) {
-    const url: string = this.productUrl + '/distinct/'+type;
+    const url: string = this.productUrl + '/distinct/' + type;
     return this.http.get<string[]>(url);
   }
 
-  getSearchResult(searchString:string): Observable<Product[]> {
-  if(searchString!=''){
-    const url: string = this.productUrl + '/search/'+searchString;
-    return this.http.get<Product[]>(url);
-  }
-  else{
-   return this.getProducts();
-  }
+  getSearchResult(searchString: string): Observable<Product[]> {
+    if (searchString != '') {
+      const url: string = this.productUrl + '/search/' + searchString;
+      return this.http.get<Product[]>(url);
+    }
+    else {
+      return this.getProducts();
+    }
   }
 
   // CART Functions
 
   addCartProduct(productID: CartProduct, userID: string) {
-    
+
     const url = this.productUrl + '/cart/update/' + userID;
-    console.log(productID)
     return this.http.put(url, productID);
   }
 
@@ -94,6 +96,13 @@ export class ProductService {
   deleteCartProduct(cartProduct: CartProduct, userID: string) {
     const url = this.productUrl + '/cart/delete/' + userID;
     return this.http.put(url, cartProduct);
+  }
+
+
+  //facets
+  getFacetsValue() :Observable<facet[]>{
+    const url: string = this.productUrl + '/facets/all';
+    return this.http.get<facet[]>(url);
   }
 
   //Order Functions
@@ -111,6 +120,13 @@ export class ProductService {
   getOrderIDforUser(userID: string): Observable<string[]> {
     const url = this.productUrl + '/user/order/' + userID;
     return this.http.get<string[]>(url);
+  }
+
+
+  getProductByParams(params){
+    const url = this.productUrl + '/filter/all';
+    return this.http.get(url, JSON.parse(JSON.stringify(params)));
+    // return this.http.get<Product[]>(url);
   }
 
 }

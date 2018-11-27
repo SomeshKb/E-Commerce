@@ -25,15 +25,13 @@ export class OrdersComponent implements OnInit {
       orderID.map((id, orderNo) => {
         this.products[orderNo] = [];
         this.productService.getOrderDetail(id).subscribe(order => {
-          console.log(order)
-          console.log(orderNo)
+    
         this.orders.push(order);
 
           order.products.map((product,productNo) => {
 
             this.productService.getProduct(product.productID).subscribe(res => {
-              console.log(product)
-              console.log(productNo)
+            
               this.products[orderNo][productNo]=res;
             })
           })

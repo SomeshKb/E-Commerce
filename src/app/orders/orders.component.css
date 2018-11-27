@@ -26,6 +26,7 @@ li {
 
 img {
   align-self: center;
+  background: orange;
   width: 10%;
   height: 80px;
   display: block;

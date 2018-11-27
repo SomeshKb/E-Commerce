@@ -1,17 +1,14 @@
-<nav >
+<nav>
 
-  <dl *ngFor="let item of facetVariable; let i=index">
-    <a><dt (click)="open(i)">{{item | uppercase }}</dt></a>
+  <dl *ngFor="let item of facetValues;let i=index ">
+    <a><dt (click)="open(i)">{{item.type | uppercase }}</dt></a>
     <div *ngIf="isOpen[i]">
 
-      <div *ngFor="let value of facetType[i]; let j=index">
-        <input type="checkbox"  (change)="toggleEditable($event,item,value)">{{value}}
-
+      <div *ngFor="let value of item.values">
+        <input type="checkbox" (change)="toggleEditable($event,item.type,value)">{{value}}
       </div>
     </div>
   </dl>
 
-  <button type="submit" (click)="getFilteredResult()">Filter Result</button>
+  <button (click)="getFilteredResult()">Filter Result</button>
 </nav>
-
-

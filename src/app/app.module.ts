@@ -25,6 +25,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { OrdersComponent } from './orders/orders.component';
 import { SearchComponent } from './shared/search/search.component';
 import { NavComponent } from './shared/nav/nav.component';
+import { UserProfileComponent } from './shared/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { NavComponent } from './shared/nav/nav.component';
     OrdersComponent,
     SearchComponent,
     NavComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,14 +3,17 @@
     <div class="orderDetails">
 
     <ul class="productList" *ngFor="let item of order.products; let productIndex=index">
+            
+
     <img>  
     <li id="productName" *ngIf="products[orderIndex][productIndex]">{{products[orderIndex][productIndex].name}} </li>
-   <li>Rs :{{products[orderIndex][productIndex].cost}}</li>
+   <li *ngIf="products[orderIndex][productIndex]" >Rs :{{products[orderIndex][productIndex].cost}}</li>
    <!-- <li>*</li> -->
-   <li>Nos:{{item.quantity}} </li>
+   <li *ngIf="products[orderIndex][productIndex]">Nos:{{item.quantity}} </li>
    <!-- <li>=</li> -->
-   <li>Rs :{{item.quantity*products[orderIndex][productIndex].cost}} </li>
-  </ul>
+   <li *ngIf="products[orderIndex][productIndex]">Rs :{{item.quantity*products[orderIndex][productIndex].cost}} </li>
+
+</ul>
 
   </div>
 
