@@ -1,0 +1,49 @@
+.orderList {
+  background: orange;
+  display: flex;
+  border-radius: 10px;
+  padding: 10px;
+  flex-flow: column;
+  width: 80%;
+}
+
+li {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.productList {
+  border-radius: 3px;
+
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px 15px;
+  align-items: center;
+  flex-flow: row;
+  background: rgb(255, 200, 99);
+  border-radius: 3px;
+}
+
+img {
+  align-self: center;
+  width: 10%;
+  height: 80px;
+  display: block;
+  align-self: center;
+}
+
+.orderDetails {
+  flex-flow: column;
+  display: flex;
+  border-radius: 3px;
+}
+
+.orderExtraDetails {
+  flex-flow: row;
+  padding: 5px 15px;
+  display: flex;
+  background: #ffd78c;
+  border-radius: 3px;
+  justify-content: space-between;
+  align-items: center;
+}

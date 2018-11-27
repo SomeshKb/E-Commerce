@@ -1,20 +1,27 @@
-<!-- <div *ngIf="orders">
 
-</div>
-<ul *ngFor="let order of orders; let i=index">
-    <ul *ngFor="let item of order.products; let j=index">
-      <li *ngIf="product[i][j]">
-          {{product[i][j]}}
-      </li>
-    </ul>
-</ul> -->
+<ul class="orderList" *ngFor="let order of orders; let orderIndex=index" >
+    <div class="orderDetails">
 
-<div *ngIf="products">
-
-  <ul *ngFor="let order of orders; let i=index">
-    <ul *ngFor="let item of order.products; let j=index">
-      <li *ngIf="products[i][j]"> </li>
-      {{products[i][j].name}}
-    </ul>
+    <ul class="productList" *ngFor="let item of order.products; let productIndex=index">
+    <img>  
+    <li id="productName" *ngIf="products[orderIndex][productIndex]">{{products[orderIndex][productIndex].name}} </li>
+   <li>Rs :{{products[orderIndex][productIndex].cost}}</li>
+   <!-- <li>*</li> -->
+   <li>Nos:{{item.quantity}} </li>
+   <!-- <li>=</li> -->
+   <li>Rs :{{item.quantity*products[orderIndex][productIndex].cost}} </li>
   </ul>
+
+  </div>
+
+<div class="orderExtraDetails">
+    <li id="date">Ordered On :{{order.date}}</li>
+
+
+    <li id="totalCost">Total Amount:Rs {{order.totalCost}}</li>
+
+
 </div>
+</ul>
+
+

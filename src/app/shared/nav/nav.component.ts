@@ -20,7 +20,7 @@ export class NavComponent implements OnInit {
     this.productService.getNavProduct(value).subscribe(res=>{
       this.productService.currentProduct.next(res);
       let params={
-        key:value
+        gender:value
       }
         this.router.navigate(['/products',params])
       })
