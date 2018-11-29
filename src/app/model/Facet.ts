@@ -1,14 +1,7 @@
-export class facet{
+export interface facet{
+    _id:string;
     type:string;
-    values:string[];
+    value:Array<string>
 }
 
 
-export class facetsParams{
-    key:string;
-    value:string;
-constructor(key,value){
-    this.key=key;
-    this.value=value;
-}
-  }

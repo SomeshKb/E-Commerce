@@ -13,7 +13,6 @@ var ctrlOrder = require('../controllers/orderController');
 
 // profile
 router.get('/profile', auth, ctrlProfile.profileRead);
-
 // router.get('/authorName/:id', ctrlProfile.authorName);
 
 // authentication
@@ -41,6 +40,9 @@ router.get('/product/distinct/:id', ctrlProduct.findByDistinct);
 router.get('/product/search/:id', ctrlProduct.findSearch);
 router.get('/product/nav/search/:id', ctrlProduct.findByGender);
 
+//facets
+router.get('/product/facets/all', ctrlProduct.facetsSearch);
+
 // router.put('/product/update/likes/:_id', ctrlProduct.updateLike);
 // router.put('/product/update/comments/:id', ctrlProduct.addComments);
 // router.put('/product/update/:id', ctrlProduct.updateBlog);
@@ -48,10 +50,6 @@ router.get('/product/nav/search/:id', ctrlProduct.findByGender);
 // router.get('/product/user/likes/:id', ctrlProduct.findUserLikes);
 // router.get('/user/likes/:id', ctrlProduct.findUserLikes);
 // router.delete('/product/remove/:id', ctrlProduct.deletePost);
-
-//facets
-router.get('/product/facets/all', ctrlProduct.facetsSearch);
-
 
 
 module.exports = router;

@@ -125,8 +125,7 @@ export class ProductService {
 
   getProductByParams(params){
     const url = this.productUrl + '/filter/all';
-    return this.http.get(url, JSON.parse(JSON.stringify(params)));
-    // return this.http.get<Product[]>(url);
+    return this.http.get(url,params);
   }
 
 }

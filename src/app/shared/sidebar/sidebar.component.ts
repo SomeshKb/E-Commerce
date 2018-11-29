@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/products.service';
-import { facet, facetsParams } from '../../model/Facet';
+import { facet } from '../../model/Facet';
 import { Params } from '@angular/router';
 @Component({
   selector: 'app-sidebar',
@@ -9,10 +9,13 @@ import { Params } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
 
-
   isOpen: Boolean[] = [];
   facetValues: facet[];
-  params:facetsParams[]=[];
+  facetParams: facet={
+    _id:'',
+    type:'',
+    value:[]
+  }
 
   constructor(private productService: ProductService) {
   }
@@ -34,15 +37,27 @@ export class SidebarComponent implements OnInit {
   toggleEditable(event, item, value) {
 
     if (event.target.checked) {
-      this.params.push(new facetsParams(item,value));
-    } else if (event.target.unchecked) {
+      if(this.facetParams.type==item){
+          this.facetParams.value.push(value);
+      }
+      else{
+        this.facetParams={
+          "_id":'1',
+          "type":item,
+          "value":[value]
+        }
+      }
+           
+        console.log(this.facetParams)
 
+    } else if(event.target.unchecked) {
+            console.log("::");
+            // this.facetParams.value.filter(x=>{console.log(x)})
     }
   }
 
   getFilteredResult(){
-    console.log(this.params)
-    this.productService.getProductByParams(this.params).subscribe(x=>{
+    this.productService.getProductByParams(this.facetParams).subscribe(x=>{
       console.log(x)
     })
   }
