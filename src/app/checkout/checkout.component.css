@@ -1,0 +1,13 @@
+.address{
+display: flex;
+flex-flow: row;
+}
+dl{
+    padding: 0px 10px;
+    align-content: center;
+}
+
+dl:hover{
+    background: rgb(201, 185, 185);
+    cursor: pointer;
+}

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { ProductService } from '../services/products.service';
 import { Product, orderProduct, Order, CartProduct } from '../model/Product';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -9,6 +10,10 @@ import { Product, orderProduct, Order, CartProduct } from '../model/Product';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+
+  // @Output
+  // EventEmitter e=new EventEmitter<Order>();
+
 
   products: Product[] = [];
   orderProduct: orderProduct[] = [];
@@ -22,7 +27,7 @@ export class CartComponent implements OnInit {
     status: "pending"
 
   };
-  constructor(private auth: AuthenticationService, private productService: ProductService) {
+  constructor(private auth: AuthenticationService, private productService: ProductService,private router:Router) {
     if (auth.isLoggedIn()) {
       this.auth.isUserLoggedIn.next(true);
     }
@@ -36,7 +41,6 @@ export class CartComponent implements OnInit {
   getCartProduct() {
 
     this.productService.getCartProduct(this.auth.getUserDetails()._id).subscribe(data => {
-      console.log(data)
       data.map(x => {
         this.productService.getProduct(x).subscribe(
           data => {
@@ -61,10 +65,10 @@ export class CartComponent implements OnInit {
     this.order.date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear().toString();
     this.order.totalCost = this.getTotalCost();
 
-    this.productService.addOrder(this.order).subscribe();
+    // this.productService.addOrder(this.order).subscribe();
+    // this.products.map(x=>this.removeProductFormCart(x._id));
+    this.router.navigate(['/checkout',this.order]);
 
-
-    this.products.map(x=>this.removeProductFormCart(x._id));
 
   }
 

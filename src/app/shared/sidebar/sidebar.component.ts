@@ -11,11 +11,7 @@ export class SidebarComponent implements OnInit {
 
   isOpen: Boolean[] = [];
   facetValues: facet[];
-  facetParams: facet={
-    _id:'',
-    type:'',
-    value:[]
-  }
+  facetParams: facet[]=[];
 
   constructor(private productService: ProductService) {
   }
@@ -23,7 +19,6 @@ export class SidebarComponent implements OnInit {
     this.productService.getFacetsValue()
       .subscribe(res => {
         this.facetValues = res
-        console.log(res)
         res.map(x => {
           this.isOpen.push(false);
         })
@@ -36,22 +31,28 @@ export class SidebarComponent implements OnInit {
 
   toggleEditable(event, item, value) {
 
-    if (event.target.checked) {
-      if(this.facetParams.type==item){
-          this.facetParams.value.push(value);
-      }
-      else{
-        this.facetParams={
-          "_id":'1',
-          "type":item,
-          "value":[value]
-        }
-      }
-           
-        console.log(this.facetParams)
 
-    } else if(event.target.unchecked) {
-            console.log("::");
+    if (event.target.checked) {
+      // if(this.facetParams.type==item){
+      //     this.facetParams.value.push(value);
+      //}
+
+      let params={
+        "_id":"1",
+        "type":"color",
+        "value":["red"]
+    }
+      let params2={
+      "type":"color",
+      "value":["blue"]
+  }
+    this.facetParams.push(params);
+    // this.facetParams.push(params2);
+    }
+    
+       
+    else {
+            console.log(item+"::"+value);
             // this.facetParams.value.filter(x=>{console.log(x)})
     }
   }

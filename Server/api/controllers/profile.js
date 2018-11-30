@@ -18,6 +18,50 @@ module.exports.profileRead = function (req, res) {
 };
 
 
+exports.addAddress = (req, res) => {
+  console.log(req.body)
+  User.updateOne({
+      '_id': req.params.id
+    }, {
+      $addToSet: {
+        address: req.body
+      }
+    })
+    .then(x=>res.send(x))
+    .catch(err => {
+      if (err.kind === 'ObjectId') {
+        return res.status(404).send({
+          message: "User not found  "
+        });
+      }
+      return res.status(500).send({
+        message: "Error while retrieving data"
+      });
+    });
+};
+
+
+exports.getAddress = (req, res) => {
+  User.findOne({
+      '_id': req.params.id
+    }, {
+      address: 1,
+      _id: 0
+    })
+    .then(x => res.send(x.address))
+    .catch(err => {
+      if (err.kind === 'ObjectId') {
+        return res.status(404).send({
+          message: "User not found  "
+        });
+      }
+      return res.status(500).send({
+        message: "Error while retrieving data"
+      });
+    });
+};
+
+
 
 // exports.findUserProduct = (req, res) => {
 

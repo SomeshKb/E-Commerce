@@ -1,3 +1,39 @@
-<p>
-  checkout works!
-</p>
+<div *ngIf="!isAddressSelected">
+  <h4>Select an Address</h4>
+  <div class="address" *ngIf="addresses">
+    <dl (click)="selectAddress(address)" *ngFor="let address of addresses">
+      <dt>{{address.name}}</dt>
+      <dt>{{address.houseNo}}</dt>
+      <dt>{{address.lane1}}</dt>
+      <dt>{{address.lane2}}</dt>
+      <dt>{{address.city}}</dt>
+      <dt>{{address.state}}</dt>
+      <dt>{{address.pincode}}</dt>
+    </dl>
+  </div>
+
+  <button *ngIf="!enableEditMode" (click)="enableEditAddress()">Add new Address</button>
+
+  <div *ngIf="enableEditMode" class="addAddress">
+    <input type="text" [(ngModel)]="selectedAddress.name" placeholder="name" required minlength="6">
+    <input type="text" [(ngModel)]="selectedAddress.houseNo" placeholder="houseNo" required minlength="6">
+    <input type="text" [(ngModel)]="selectedAddress.lane1" placeholder="lane1" required minlength="6">
+    <input type="text" [(ngModel)]="selectedAddress.lane2" placeholder="lane2" required minlength="6">
+    <input type="text" [(ngModel)]="selectedAddress.city" placeholder="city" required minlength="6">
+    <input type="text" [(ngModel)]="selectedAddress.state" placeholder="state" required minlength="6">
+    <input type="number" [(ngModel)]="selectedAddress.pincode" placeholder="pincode" required minlength="6">
+    <input type="submit" (click)="Submit()" value="Add Address">
+  </div>
+
+</div>
+<div class="selectedAddress" *ngIf="isAddressSelected">
+  <dl>
+    <dt>{{selectedAddress.name}}</dt>
+    <dt>{{selectedAddress.houseNo}}</dt>
+    <dt>{{selectedAddress.lane1}}</dt>
+    <dt>{{selectedAddress.lane2}}</dt>
+    <dt>{{selectedAddress.city}}</dt>
+    <dt>{{selectedAddress.state}}</dt>
+    <dt>{{selectedAddress.pincode}}</dt>
+  </dl>
+</div>

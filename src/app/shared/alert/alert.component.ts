@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import { AlertService } from '../../services/alert.service';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-alert',
@@ -11,9 +11,9 @@ export class AlertComponent implements OnInit {
 
   alert: string = "";
   messages: string[];
-  // constructor(private alertService: AlertService) {
-  //   this.messages = alertService.messages;
-  // }
+  constructor(private alertService: AlertService) {
+    this.messages = this.alertService.messages;
+  }
 
   ngOnInit() {
 

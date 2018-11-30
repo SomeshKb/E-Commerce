@@ -24,7 +24,7 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     if (this.auth.isLoggedIn()) {
-      this.router.navigateByUrl('/blogs');
+      this.router.navigateByUrl('/products');
     }
   }
 
@@ -35,7 +35,7 @@ export class SignupComponent implements OnInit {
   register() {
     this.auth.register(this.credentials).subscribe(() => {
       alert("User Created")
-      this.router.navigateByUrl('/blogs');
+      this.router.navigateByUrl('/products');
     }, (err) => {
       if (err.status == 409) {
         // this.alertService.addAlertToast(err.error.message);

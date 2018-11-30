@@ -68,8 +68,9 @@ exports.findOne = (req, res) => {
 
 // Find product using filter i.e query
 exports.findByQuery = (req, res) => {
-  console.log(req)
-  Product.find({    })
+
+  console.log(req.query)
+    Product.find({    })
     .then(product => {
       res.send(product);
     }).catch(err => {
@@ -304,3 +305,4 @@ exports.orderProduct = (req, res) => {
       });
     });
 }
+

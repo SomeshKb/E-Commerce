@@ -14,12 +14,14 @@ export interface UserProfile{
   address:Array<Address>;
 }
 
-interface Address{
+export interface Address{
+  name:string;
   houseNo:string;
   lane1:string;
   lane2:string;
   city:string;
   state:string;
+  pincode:number;
 }
 
 export interface TokenResponse {

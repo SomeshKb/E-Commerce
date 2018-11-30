@@ -19,6 +19,9 @@ var userSchema = new mongoose.Schema({
   },
   cart:{
     type :Array
+  },
+  address:{
+    type:Array
   }
 },
 );

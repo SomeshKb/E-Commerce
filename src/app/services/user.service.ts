@@ -4,11 +4,14 @@ import { Observable } from 'rxjs';
 // import { Blog } from '../model/blog';
 // import { UserDetails } from '../model/User';
 import { Order } from '../model/Product';
+import { Address } from '../model/User';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
+  private userUrl = 'api/user';
 
 
   constructor(private http: HttpClient) { }
@@ -30,4 +33,18 @@ export class UserService {
     const url = "api/authorName/" + userID;
     return this.http.get<String>(url);
   }
+
+
+    //address services
+    getAddress(userID:string):Observable<Address[]>{
+      const url= this.userUrl+"/get/address/"+userID;
+      return this.http.get<Address[]>(url);
+    }
+  
+
+    //address services
+    postAddress(userID:string,address:Address){
+      const url= this.userUrl+"/post/address/"+userID;
+      return this.http.post(url,address);
+    }  
 }

@@ -19,6 +19,11 @@ router.get('/profile', auth, ctrlProfile.profileRead);
 router.post('/register', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);
 
+//user routes
+router.get('/user/get/address/:id',ctrlProfile.getAddress)
+router.post('/user/post/address/:id',ctrlProfile.addAddress)
+
+
 //cart
 router.get("/product/cart/get/:id",ctrlOrder.getCartItem);
 router.put("/product/cart/update/:id",ctrlOrder.setCartItem);

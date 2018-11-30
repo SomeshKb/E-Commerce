@@ -3,6 +3,7 @@ import { TokenPayload, UserDetails } from '../model/user';
 import { NgForm } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
   };
   user: UserDetails;
 
-  constructor(private auth: AuthenticationService, private router: Router) { }
+  constructor(private auth: AuthenticationService, private router: Router,private alertService:AlertService) { }
 
   ngOnInit() {
     if (this.auth.isLoggedIn()) {
@@ -38,10 +39,10 @@ export class LoginComponent implements OnInit {
 
     this.auth.login(this.credentials).subscribe(() => {
       this.auth.isUserLoggedIn.next(true);
-      this.router.navigateByUrl('/blogs');
+      this.router.navigateByUrl('/products');
     }, (err) => {
       if (err.status === 401) {
-        // this.alertService.addAlertToast('Invalid Credentials');
+        this.alertService.addAlertToast('Invalid Credentials');
 
       }
     });

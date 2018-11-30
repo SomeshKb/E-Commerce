@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Product, Order, CartProduct } from '../model/product';
 import { UserDetails } from '../model/User';
@@ -100,7 +100,7 @@ export class ProductService {
 
 
   //facets
-  getFacetsValue() :Observable<facet[]>{
+  getFacetsValue(): Observable<facet[]> {
     const url: string = this.productUrl + '/facets/all';
     return this.http.get<facet[]>(url);
   }
@@ -122,10 +122,17 @@ export class ProductService {
     return this.http.get<string[]>(url);
   }
 
-
-  getProductByParams(params){
+// needed to be formatted and to redesigned for sending json data
+  getProductByParams(queryArray) {
+    queryArray = (JSON.parse(JSON.stringify(queryArray)));
+    let param = new HttpParams();
+    param = param.append('facets', queryArray.join(', '));
+    console.log(param)
     const url = this.productUrl + '/filter/all';
-    return this.http.get(url,params);
+    return this.http.get(url, { params: param });
   }
+
+
+
 
 }
