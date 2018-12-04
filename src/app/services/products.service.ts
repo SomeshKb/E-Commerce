@@ -11,8 +11,6 @@ import { facet } from '../model/Facet';
 export class ProductService {
   public currentProduct: Subject<Product[]> = new Subject<Product[]>();
 
-  private cartToken: string;
-
   private productUrl = 'api/product';
 
   constructor(private http: HttpClient) { }
@@ -27,6 +25,14 @@ export class ProductService {
   getProduct(id: string): Observable<Product> {
     const url = `${this.productUrl}/${id}`;
     return this.http.get<Product>(url);
+  }
+
+  // Get product using the facets 
+  getProductByParams(query): Observable<Product[]> {
+    const url = this.productUrl + '/filter/all';
+    return this.http.get<Product[]>(url, {
+      params: query
+    });
   }
 
   // UPDATE like of a product 
@@ -121,18 +127,5 @@ export class ProductService {
     const url = this.productUrl + '/user/order/' + userID;
     return this.http.get<string[]>(url);
   }
-
-// needed to be formatted and to redesigned for sending json data
-  getProductByParams(queryArray) {
-    queryArray = (JSON.parse(JSON.stringify(queryArray)));
-    let param = new HttpParams();
-    param = param.append('facets', queryArray.join(', '));
-    console.log(param)
-    const url = this.productUrl + '/filter/all';
-    return this.http.get(url, { params: param });
-  }
-
-
-
 
 }

@@ -39,7 +39,7 @@ router.get("/user/order/:id",ctrlOrder.findUserOrders);
 //product
 router.post('/product/create', ctrlProduct.create);
 router.get('/product/all', ctrlProduct.findAll);
-router.get('/product/:_id', ctrlProduct.findOne);
+router.get('/product/:_id',ctrlProduct.findOne);
 router.get('/product/filter/all', ctrlProduct.findByQuery);
 router.get('/product/distinct/:id', ctrlProduct.findByDistinct);
 router.get('/product/search/:id', ctrlProduct.findSearch);

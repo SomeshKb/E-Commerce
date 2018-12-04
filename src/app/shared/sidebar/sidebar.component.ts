@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/products.service';
-import { facet } from '../../model/Facet';
-import { Params } from '@angular/router';
+import { facet, queryFacets } from '../../model/Facet';
+import { Params, Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -11,10 +11,17 @@ export class SidebarComponent implements OnInit {
 
   isOpen: Boolean[] = [];
   facetValues: facet[];
-  facetParams: facet[]=[];
-
-  constructor(private productService: ProductService) {
+  queryParams: queryFacets = {
+    gender: [],
+    sleeveLength: [],
+    color: [],
+    neck: [],
+    size: [],
   }
+
+  constructor(private productService: ProductService, private router: Router, private activatedRoute: ActivatedRoute) {
+  }
+
   ngOnInit() {
     this.productService.getFacetsValue()
       .subscribe(res => {
@@ -23,6 +30,11 @@ export class SidebarComponent implements OnInit {
           this.isOpen.push(false);
         })
       });
+
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (params.gender) {
+        this.queryParams.gender.push(params.gender);
+      }});
   }
 
   open(value) {
@@ -31,36 +43,47 @@ export class SidebarComponent implements OnInit {
 
   toggleEditable(event, item, value) {
 
-
     if (event.target.checked) {
-      // if(this.facetParams.type==item){
-      //     this.facetParams.value.push(value);
-      //}
-
-      let params={
-        "_id":"1",
-        "type":"color",
-        "value":["red"]
+      switch (item) {
+        // case 'gender': this.queryParams.gender.push(value); break;
+        case 'sleeveLength': this.queryParams.sleeveLength.push(value); break;
+        case 'color': this.queryParams.color.push(value); break;
+        case 'neck': this.queryParams.neck.push(value); break;
+        case 'size': this.queryParams.size.push(value); break;
+      }
     }
-      let params2={
-      "type":"color",
-      "value":["blue"]
-  }
-    this.facetParams.push(params);
-    // this.facetParams.push(params2);
-    }
-    
-       
     else {
-            console.log(item+"::"+value);
-            // this.facetParams.value.filter(x=>{console.log(x)})
+      switch (item) {
+        // case 'gender': this.queryParams.gender = this.removeElement(this.queryParams.gender, value); break;
+        case 'sleeveLength': this.queryParams.sleeveLength = this.removeElement(this.queryParams.sleeveLength, value); break;
+        case 'color': this.queryParams.color = this.removeElement(this.queryParams.color, value); break;
+        case 'neck': this.queryParams.neck = this.removeElement(this.queryParams.neck, value); break;
+        case 'size': this.queryParams.size = this.removeElement(this.queryParams.size, value); break;
+      }
     }
   }
 
-  getFilteredResult(){
-    this.productService.getProductByParams(this.facetParams).subscribe(x=>{
-      console.log(x)
+
+
+  getFilteredResult() {
+    this.productService.getProductByParams(this.queryParams).subscribe(product => {
+      this.productService.currentProduct.next(product);
+      this.router.navigate(['/products'], { queryParams: this.queryParams });
     })
+  }
+
+  removeElement(array: string[], value: string): string[] {
+    let result = []
+    if (array.length < 1) {
+      return result;
+    }
+    else {
+      result = array.filter(res => {
+        return res != value
+      })
+    }
+    return result;
+
   }
 
 }

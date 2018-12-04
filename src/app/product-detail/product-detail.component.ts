@@ -13,7 +13,6 @@ export class ProductDetailComponent implements OnInit {
 
   product:Product;
 
-
   constructor(private productService:ProductService,private route:ActivatedRoute,private auth:AuthenticationService) {
       if (auth.isLoggedIn()) {
         this.auth.isUserLoggedIn.next(true);
@@ -22,12 +21,14 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit() {
     let id: string = this.route.snapshot.paramMap.get('id');
+    console.log(id)
     this.getProductDetails(id);
   }
 
   getProductDetails(id:string) {
     this.productService.getProduct(id).subscribe(
       (result)=>{
+    console.log(result)
       this.product=result
       })
   }

@@ -45,12 +45,12 @@ exports.findAll = (req, res) => {
 };
 
 
-// Find a single product
+// Find a single product by id
 exports.findOne = (req, res) => {
+  console.log(req.params._id)
   Product.findOne({
       '_id': req.params._id
-
-    }) // search by id
+    })
     .then(product => {
       res.send(product);
     }).catch(err => {
@@ -66,26 +66,8 @@ exports.findOne = (req, res) => {
 };
 
 
-// Find product using filter i.e query
-exports.findByQuery = (req, res) => {
 
-  console.log(req.query)
-    Product.find({    })
-    .then(product => {
-      res.send(product);
-    }).catch(err => {
-      if (err.kind === 'ObjectId') {
-        return res.status(404).send({
-          message: "Product not found  " + req.params._id
-        });
-      }
-      return res.status(500).send({
-        message: "Error while retrieving product " + req.params._id
-      });
-    });
-};
-
-// Find product using filter i.e query
+// Find product using search query
 exports.findSearch = (req, res) => {
   Product.find({
       'name': {
@@ -124,8 +106,6 @@ exports.findByGender = (req, res) => {
       });
     });
 };
-
-
 
 exports.findByDistinct = (req, res) => {
   Product.distinct(req.params.id)
@@ -167,42 +147,40 @@ exports.updateLike = (req, res) => {
 
 
 // find likes per user
-exports.findUserLikes = (req, res) => {
-
-  //  db.product.aggregate([{$match:{authorName:"Nayan"}},{$group:{_id:"$authorName",total:{$sum:{$size:'$like'}} }},{$project:{'_id':0}}])
-
-  Product.aggregate({
-      '$match': {
-        'authorID': req.params.id
-      }
-    }, {
-      '$group': {
-        "_id": "authorID",
-        total: {
-          $sum: {
-            $size: '$like'
-          }
-        }
-      }
-    }, {
-      $project: {
-        '_id': 0
-      }
-    })
-    .then(result => {
-      res.send(result[0])
-    })
-    .catch(err => {
-      if (err.kind === 'ObjectId') {
-        return res.status(404).send({
-          message: "Not found  " + req.params.id
-        });
-      }
-      return res.status(500).send({
-        message: "Error while retrieving Data " + req.params.id
-      });
-    });
-}
+// exports.findUserLikes = (req, res) => {
+//   //  db.product.aggregate([{$match:{authorName:"Nayan"}},{$group:{_id:"$authorName",total:{$sum:{$size:'$like'}} }},{$project:{'_id':0}}])
+//   Product.aggregate({
+//       '$match': {
+//         'authorID': req.params.id
+//       }
+//     }, {
+//       '$group': {
+//         "_id": "authorID",
+//         total: {
+//           $sum: {
+//             $size: '$like'
+//           }
+//         }
+//       }
+//     }, {
+//       $project: {
+//         '_id': 0
+//       }
+//     })
+//     .then(result => {
+//       res.send(result[0])
+//     })
+//     .catch(err => {
+//       if (err.kind === 'ObjectId') {
+//         return res.status(404).send({
+//           message: "Not found  " + req.params.id
+//         });
+//       }
+//       return res.status(500).send({
+//         message: "Error while retrieving Data " + req.params.id
+//       });
+//     });
+// }
 
 exports.deleteProduct = (req, res) => {
   Product.deleteOne({
@@ -224,30 +202,30 @@ exports.deleteProduct = (req, res) => {
 }
 
 
-exports.addComments = (req, res) => {
+// exports.addComments = (req, res) => {
 
-  Product.updateOne({
-      '_id': req.params.id
-    }, {
-      $addToSet: {
-        "comments": req.body
-      }
-    })
-    .then(res.send())
-    .catch(err => {
-      if (err.kind === 'ObjectId') {
-        return res.status(404).send({
-          message: "Product not found  " + req.params._id
-        });
-      }
-      return res.status(500).send({
-        message: "Error while retrieving product " + req.params._id
-      });
-    });
-};
+//   Product.updateOne({
+//       '_id': req.params.id
+//     }, {
+//       $addToSet: {
+//         "comments": req.body
+//       }
+//     })
+//     .then(res.send())
+//     .catch(err => {
+//       if (err.kind === 'ObjectId') {
+//         return res.status(404).send({
+//           message: "Product not found  " + req.params._id
+//         });
+//       }
+//       return res.status(500).send({
+//         message: "Error while retrieving product " + req.params._id
+//       });
+//     });
+// };
+
 //facets and filter
 exports.facetsSearch = (req, res) => {
-
   Facets.find({})
     .then(result => {
       res.send(result);
@@ -258,13 +236,12 @@ exports.facetsSearch = (req, res) => {
         });
       }
       return res.status(500).send({
-        message: "Error while retrieving data " 
+        message: "Error while retrieving data "
       });
     });
 };
 
 exports.updateProduct = (req, res) => {
-
   Product.updateOne({
       '_id': req.params.id
     }, {
@@ -306,3 +283,26 @@ exports.orderProduct = (req, res) => {
     });
 }
 
+// Find product using filter i.e query
+exports.findByQuery = (req, res) => {
+  console.log(req.query)
+  Product.find(req.query)
+    .then(product => {
+      res.send(product);
+    }).catch(err => {
+      if (err.kind === 'ObjectId') {
+        return res.status(404).send({
+          message: "Product not found"
+        });
+      }
+      return res.status(500).send({
+        message: "Error while retrieving product"
+      });
+    });
+};
+
+function createQuery(requestQuery) {
+  if (requestQuery.gender != null) {
+
+  }
+}

@@ -19,7 +19,6 @@ module.exports.profileRead = function (req, res) {
 
 
 exports.addAddress = (req, res) => {
-  console.log(req.body)
   User.updateOne({
       '_id': req.params.id
     }, {

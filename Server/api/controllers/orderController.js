@@ -107,7 +107,6 @@ exports.getCartItem = (req, res) => {
 }
 
 exports.setCartItem = (req, res) => {
-  console.log(req)
   User.update({
       _id: req.params.id
     }, {
@@ -124,7 +123,6 @@ exports.setCartItem = (req, res) => {
 }
 
 exports.deleteCartItem = (req, res) => {
-  console.log(req)
   User.updateOne({
       _id: req.params.id
     }, {
