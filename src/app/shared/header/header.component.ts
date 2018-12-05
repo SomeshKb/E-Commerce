@@ -13,9 +13,9 @@ export class HeaderComponent implements OnInit {
 
   user: UserDetails;
   isUserLoggedIn: boolean;
-  queryField: FormControl= new FormControl();
+  queryField: FormControl = new FormControl();
 
-  constructor(private authenticationService: AuthenticationService,private productService:ProductService) {
+  constructor(private authenticationService: AuthenticationService, private productService: ProductService) {
     this.authenticationService.isUserLoggedIn.subscribe(value => {
       this.user = this.authenticationService.getUserDetails();
       this.isUserLoggedIn = value;

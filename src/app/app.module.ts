@@ -26,6 +26,9 @@ import { OrdersComponent } from './orders/orders.component';
 import { SearchComponent } from './shared/search/search.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { UserProfileComponent } from './shared/user-profile/user-profile.component';
+import { ProductLayoutComponent } from './layout/product-layout/product-layout.component';
+import { NonProductLayoutComponent } from './layout/non-product-layout/non-product-layout.component';
+import { LoginLayoutComponent } from './layout/login-layout/login-layout.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +49,9 @@ import { UserProfileComponent } from './shared/user-profile/user-profile.compone
     SearchComponent,
     NavComponent,
     UserProfileComponent,
+    ProductLayoutComponent,
+    NonProductLayoutComponent,
+    LoginLayoutComponent,
   ],
   imports: [
     BrowserModule,

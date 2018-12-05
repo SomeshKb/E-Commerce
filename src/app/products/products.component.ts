@@ -17,17 +17,14 @@ export class ProductsComponent implements OnInit {
     if (auth.isLoggedIn()) {
       this.auth.isUserLoggedIn.next(true);
     }
-    console.log(this.products)
 
     this.productService.currentProduct.subscribe(value => {
       this.products = value;
-      console.log(this.products)
     })
   }
 
   ngOnInit() {
     if (this.route.snapshot.queryParams) {
-      console.log(this.route.snapshot.queryParams);
       let query: string = <string><any>this.route.snapshot.queryParams;
       this.getProductByQueryParams(query);
     }
