@@ -1,11 +1,10 @@
-<nav>
-
+<nav  >
   <dl *ngFor="let item of facetValues;let i=index ">
-    <a><dt (click)="openSidebarMenu(i)">{{item.type | uppercase }}</dt></a>
+    <a id="item"><dt (click)="openSidebarMenu(i)">{{item.type | titlecase }}</dt></a>
     <div *ngIf="isSidebarMenuOpen[i]">
 
-      <div *ngFor="let value of item.values">
-        <input type="checkbox" (change)="toggleEditable($event,item.type,value)">{{value}}
+      <div id="value" *ngFor="let value of item.values">
+        <input type="checkbox" (change)="toggleEditable($event,item.type,value)">{{value|uppercase }}
       </div>
     </div>
   </dl>

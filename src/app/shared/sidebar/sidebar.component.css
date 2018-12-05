@@ -1,73 +1,81 @@
 nav {
-	padding: 0%;
-	height: 100%;
-	/* border: solid gray;	 */
-	border-width: 0px 1px 0px 0px;
+  padding-left: 5%;
+
+  height: 100%;
+  /* border: solid gray;	
+  border-width: 0px 1px 0px 0px; */
 }
-nav dl  {
-  position:relative;
-  left:10px; 
-  list-style:none;
-	overflow: hidden;
-	line-height: 30px;
+
+nav dl {
+  position: relative;
+  left: 10px;
+  list-style: none;
+  overflow: hidden;
+  line-height: 30px;
 }
+
 nav dl dd a {
-	color: blue;
-	text-decoration: none
+  color: blue;
+  text-decoration: none
 }
 
-a:hover{
-cursor: pointer;
+a:hover {
+  cursor: pointer;
 }
 
-#title:hover {
-	cursor: pointer;
-}
-#tile:hover {
-	cursor: pointer;
+#value {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 1.8ch;
+  color: rgb(165, 119, 34);
 }
 
+#item {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 2ch;
+  color: rgb(221, 144, 0);
+}
 
 @media only screen and (max-width: 800px) {
-	
-	nav {
-		flex-flow: column;
-			display: grid;
-			grid-gap: 0%;
-			grid-template-columns: 33% 33% 33% ;
-			grid-template-areas:
-			"label1 label1 label1";
-			background-color: #fff;
-			color: #444;
-	  
-	}
-	nav dl  {
-		position:relative;
-		list-style:none;
-	float: left;
-		overflow: hidden;
-	}
-	nav dl dt {
-		grid-area: label1 ;
-		margin: 0;
-		padding: 0;
-	}
 
-	
-	nav dl dt:hover {
-		cursor: pointer;
-	}
-	
- #title:hover + #tile{
-	 display: block;
-	}
+  nav {
+    flex-flow: column;
+    display: grid;
+    grid-gap: 0%;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-areas:
+      "label1 label1 label1";
+    background-color: #fff;
+    color: #444;
+  }
 
-	#tile:hover{
-		display: block
-	}
+  nav dl {
+    position: relative;
+    list-style: none;
+    float: left;
+    overflow: hidden;
+  }
 
-	nav dl dt,dd {
-		text-align: center
-	}
+  nav dl dt {
+    grid-area: label1;
+    margin: 0;
+    padding: 0;
+  }
+
+
+  nav dl dt:hover {
+    cursor: pointer;
+  }
+
+  #title:hover+#tile {
+    display: block;
+  }
+
+  #tile:hover {
+    display: block
+  }
+
+  nav dl dt,
+  dd {
+    text-align: center
+  }
 }
-
