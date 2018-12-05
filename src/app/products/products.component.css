@@ -27,7 +27,6 @@ li {
   text-align: center;
   border-radius: 20px;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
 }
 
 #product li #content {
@@ -58,12 +57,6 @@ li:hover {
 
 .content {
   min-height: 72.5vh;
-}
-
-:host {
-  position: static;
-  top: 0;
-  left: 0;
 }
 
 img {

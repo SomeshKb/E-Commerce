@@ -1,0 +1,4 @@
+{"_id":1.0,"type":"color","values":["red","blue","black","white","brown"]}
+{"_id":2.0,"type":"sleeveLength","values":["half","3/4","full","sleeveless"]}
+{"_id":3.0,"type":"size","values":["xs","s","m","l","xl"]}
+{"_id":4.0,"type":"neck","values":["v-shaped","round"]}

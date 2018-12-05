@@ -10,7 +10,7 @@ export class AlertService {
 
   constructor() {
     this.alert.subscribe(value => {
-      console.log(value);
+      // console.log(value);
 
       if(this.messages.length){
          this.messages.map(x=>{

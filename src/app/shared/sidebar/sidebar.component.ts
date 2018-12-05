@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/products.service';
 import { facet, queryFacets } from '../../model/Facet';
-import { Params, Router, ActivatedRoute } from '@angular/router';
+import {  Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -9,7 +9,7 @@ import { Params, Router, ActivatedRoute } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
 
-  isOpen: Boolean[] = [];
+  isSidebarMenuOpen: Boolean[] = [];
   facetValues: facet[];
   queryParams: queryFacets = {
     gender: [],
@@ -27,18 +27,21 @@ export class SidebarComponent implements OnInit {
       .subscribe(res => {
         this.facetValues = res
         res.map(x => {
-          this.isOpen.push(false);
+          this.isSidebarMenuOpen.push(false);
         })
       });
 
     this.activatedRoute.queryParams.subscribe(params => {
       if (params.gender) {
+        this.queryParams.gender.forEach(element => {
+          this.queryParams.gender.pop();
+        });
         this.queryParams.gender.push(params.gender);
       }});
   }
 
-  open(value) {
-    this.isOpen[value] = !this.isOpen[value];
+  openSidebarMenu(value) {
+    this.isSidebarMenuOpen[value] = !this.isSidebarMenuOpen[value];
   }
 
   toggleEditable(event, item, value) {
@@ -63,11 +66,11 @@ export class SidebarComponent implements OnInit {
     }
   }
 
-
-
   getFilteredResult() {
+    // console.log(this.queryParams)
     this.productService.getProductByParams(this.queryParams).subscribe(product => {
       this.productService.currentProduct.next(product);
+      // console.log(product)
       this.router.navigate(['/products'], { queryParams: this.queryParams });
     })
   }

@@ -1,8 +1,8 @@
 <nav>
 
   <dl *ngFor="let item of facetValues;let i=index ">
-    <a><dt (click)="open(i)">{{item.type | uppercase }}</dt></a>
-    <div *ngIf="isOpen[i]">
+    <a><dt (click)="openSidebarMenu(i)">{{item.type | uppercase }}</dt></a>
+    <div *ngIf="isSidebarMenuOpen[i]">
 
       <div *ngFor="let value of item.values">
         <input type="checkbox" (change)="toggleEditable($event,item.type,value)">{{value}}

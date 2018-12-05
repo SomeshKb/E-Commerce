@@ -1,12 +1,16 @@
-<div class="content">
+<div *ngIf="products">
+  <ng-container *ngIf="products.length===0; else elseTemplate">
+    <p>No Product to Show</p>
+  </ng-container>
+
+  <ng-template class="content" #elseTemplate>
     <ul id="product">
       <li *ngFor="let product of products">
         <a routerLink="/product/{{product._id}}">
-          <img >
+          <img>
           <h3>{{product.name}} </h3>
         </a>
       </li>
-  
     </ul>
-  </div>
-  
+  </ng-template>
+</div>

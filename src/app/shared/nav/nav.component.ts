@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/products.service';
-import { Route, ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -9,21 +9,20 @@ import { Route, ActivatedRoute, Router } from '@angular/router';
 })
 export class NavComponent implements OnInit {
 
-  constructor(private productService:ProductService,private router:Router) { }
+  constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit() {
   }
 
 
-  navClickded(value:string){
+  navClickded(value: string) {
 
-    this.productService.getProductByGender(value).subscribe(res=>{
+    this.productService.getProductByGender(value).subscribe(res => {
       this.productService.currentProduct.next(res);
- 
-        // this.router.navigate(['/products',params])
-        this.router.navigate(['/products'], { queryParams: { gender: value } });
+      // this.router.navigate(['/products',params])
+      this.router.navigate(['/products'], { queryParams: { gender: value } });
 
-      })
+    })
   }
 
 }

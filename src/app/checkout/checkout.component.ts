@@ -56,8 +56,8 @@ export class CheckoutComponent implements OnInit {
   }
 
   OnSubmit(form:NgForm){
-    console.log(form)
-    console.log(this.addressForm.value);
+    // console.log(form)
+    // console.log(this.addressForm.value);
 
   }
 
